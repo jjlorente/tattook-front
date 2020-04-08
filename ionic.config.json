@@ -1,0 +1,7 @@
+{
+  "name": "tattook-front",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
