@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(){}
 
-  async login(){
+  async loginWithGoogle(){
     if(this.platform.is("cordova")){
       this.authService.loginWithGoogle();
     } else {
