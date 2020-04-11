@@ -1,0 +1,19 @@
+<ion-content [fullscreen]="true">
+  <ion-title class="title app-name">Tattook</ion-title>
+  <div id="container">
+    <div class="desc-text">
+      Introduce <br>
+      la dirección <br>
+      donde trabajas.
+    </div>
+    <div class="form-container">
+      <input type="text" placeholder="Dirección" class="item-input"/>
+      <ion-button (click)="getGeolocation()" class="navigate-btn" fill="outline" icon-only>
+        <ion-icon class="navigate-icon" name="navigate-outline"></ion-icon>
+      </ion-button>
+    </div>
+    <div class="desc-info">
+      Está información nos ayudará a mostrarte en los resultados de búsqueda de clientes potenciales por cercanía.
+    </div>
+  </div>
+</ion-content>

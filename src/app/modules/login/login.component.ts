@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform, ToastController } from '@ionic/angular';
-import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
 
 @Component({
@@ -19,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   async loginWithGoogle(){
     if(this.platform.is("cordova")){
-      this.authService.loginWithGoogle();
+      this.authService.loginWithGoogle('client');
     } else {
       const toast = await this.toast.create({
         message: "Solo disponible en app móvil.",
@@ -28,5 +27,9 @@ export class LoginComponent implements OnInit {
       })
       toast.present();
     }
+  }
+
+  loginAsArtist(){
+    
   }
 }

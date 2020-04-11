@@ -1,9 +1,14 @@
-<ion-header [translucent]="true">
 <ion-content [fullscreen]="true">
+  <ion-title class="title app-name">Tattook</ion-title>
   <div id="container">
-    <ion-button expand="block" color="danger" (click)="loginWithGoogle()">
-      <ion-icon class="logo-google" name="logo-google"></ion-icon>
-      Continuar con Google
+    <ion-button class="btn-google" expand="block" (click)="loginWithGoogle()">
+      <div class="btn-google-content">
+        <img class="logo-google" width="36px" src="/assets/images/google-icon.png"/>
+        <span class="btn-google-text">Continuar con Google</span>
+      </div>
+    </ion-button>
+    <ion-button [routerLink]="['address-form']" class="btn-login-artist" expand="block" fill="outline" color="danger" (click)="loginAsArtist()">
+      Unirse como Artista
     </ion-button>
   </div>
 </ion-content>

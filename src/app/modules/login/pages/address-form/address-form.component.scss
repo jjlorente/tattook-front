@@ -1,0 +1,57 @@
+.title{
+  height: 10vh;
+}
+.app-name{
+  font-family: 'Diplomata_SC';
+}
+#container {
+  padding: 20px;
+  height: 90vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+.desc-text{
+  font-size: 40px;
+  font-weight: 700;
+  width: 100%;
+}
+.item-input{
+  border: 1px solid #ccc;
+  padding: 20px 20px;
+  border-right: 0px;
+  display: inline-block;
+  /* border-radius: 4px; */
+  box-sizing: border-box;
+  border-radius: 8px 0px 0px 8px;
+  width: 100%;
+}
+.item-input:focus{
+  outline: none;
+  border: 2px solid rgb(92, 0, 0);
+}
+.form-container{
+  margin-top: 18vh;
+  display:flex;
+  width: 100%;
+}
+.navigate-btn{
+  --box-shadow: none;
+  height: 100%;
+  --border-radius: 0px 8px 8px 0px;
+  margin: 0px;
+  --box-shadow:none;
+  --border-width: 1px 1px 1px 0px;
+  --border-color: #ccc;
+  --color: black;
+}
+.navigate-icon{
+  margin:auto;
+}
+.desc-info {
+  padding:10px;
+  background-color: #f5f5f5;
+  margin-top: 40px;
+  border-radius: 8px;
+}

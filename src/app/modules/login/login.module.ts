@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { LoginComponent } from './login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { AddressFormComponent } from "./pages/address-form/address-form.component";
 
 @NgModule({
   imports: [
@@ -17,10 +18,17 @@ import { HttpClientModule } from '@angular/common/http';
       {
         path: '',
         component: LoginComponent
+      },
+      {
+        path: 'address-form',
+        component: AddressFormComponent
       }
     ])
   ],
-    declarations: [LoginComponent],
-    providers: [],
+  declarations: [
+    LoginComponent,
+    AddressFormComponent
+  ],
+  providers: [],
 })
 export class LoginModule { }

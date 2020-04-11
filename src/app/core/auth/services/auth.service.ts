@@ -14,14 +14,15 @@ export class AuthService {
 
   constructor(private http: HttpClient, private googlePlus: GooglePlus, private toast: ToastController) { }
     
-  async loginWithGoogle(){
+  async loginWithGoogle(role){
     const resGoogle = await this.googlePlus.login({})
     this.http.post(environment.apiUrl+'/login', {
       name: resGoogle.displayName,
       email: resGoogle.email,
       provider_id: resGoogle.userId,
       provider: "google",
-      picture: resGoogle.imageUrl
+      picture: resGoogle.imageUrl,
+      role: role
     }).subscribe((res:any) => {
       console.log(res)
       this.setToken(res.token);
