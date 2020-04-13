@@ -14,23 +14,27 @@ export class AuthService {
 
   constructor(private http: HttpClient, private googlePlus: GooglePlus, private toast: ToastController) { }
     
-  async loginWithGoogle(role){
+  async loginWithGoogle(role, location = null, address = null){
     const resGoogle = await this.googlePlus.login({})
-    this.http.post(environment.apiUrl+'/login', {
+    let postObject: any = {
       name: resGoogle.displayName,
       email: resGoogle.email,
       provider_id: resGoogle.userId,
       provider: "google",
       picture: resGoogle.imageUrl,
       role: role
-    }).subscribe((res:any) => {
-      console.log(res)
-      this.setToken(res.token);
-      this.isLogin.next(true);
-    }, async (err) => {
-      const toast = await this.toast.create({message:'Error al hacer login.', color: 'danger', duration: 5000})
-      toast.present();
-    })
+    };
+    if(location) postObject.location = location;
+    if(address) postObject.address = address;
+
+    this.http.post(environment.apiUrl+'/login', postObject)
+      .subscribe((res:any) => {
+        this.setToken(res.token);
+        this.isLogin.next(true);
+      }, async (err) => {
+        const toast = await this.toast.create({message:'Error al hacer login.', color: 'danger', duration: 5000})
+        toast.present();
+      })
   }
 
   logOut(){

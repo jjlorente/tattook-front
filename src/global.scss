@@ -25,4 +25,14 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-@import "./assets/fonts/fonts.scss"
+@import "./assets/fonts/fonts.scss";
+
+
+//GOOGLE SELECT ADDRESS
+.pac-icon{
+  vertical-align: text-bottom !important;
+}
+.pac-item{
+  line-height: 52px !important;
+  height: 52px !important;
+}

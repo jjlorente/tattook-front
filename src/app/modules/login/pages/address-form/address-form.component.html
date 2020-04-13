@@ -7,7 +7,7 @@
       donde trabajas.
     </div>
     <div class="form-container">
-      <input type="text" placeholder="Dirección" class="item-input"/>
+      <input #addressInput (change)="onAddressInputChange($event)" type="text" placeholder="Dirección" class="item-input"/>
       <ion-button (click)="getGeolocation()" class="navigate-btn" fill="outline" icon-only>
         <ion-icon class="navigate-icon" name="navigate-outline"></ion-icon>
       </ion-button>
@@ -15,5 +15,11 @@
     <div class="desc-info">
       Está información nos ayudará a mostrarte en los resultados de búsqueda de clientes potenciales por cercanía.
     </div>
+    <ion-button (click)="loginWithGoogle()" class="btn-google" expand="block" [disabled]="!location.lat || !location.lng || !address">
+      <div class="btn-google-content">
+        <img class="logo-google" width="36px" src="/assets/images/google-icon.png"/>
+        <span class="btn-google-text">Continuar con Google</span>
+      </div>
+    </ion-button>
   </div>
 </ion-content>

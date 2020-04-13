@@ -32,7 +32,7 @@
   border: 2px solid rgb(92, 0, 0);
 }
 .form-container{
-  margin-top: 18vh;
+  margin-top: 11vh;
   display:flex;
   width: 100%;
 }
@@ -54,4 +54,26 @@
   background-color: #f5f5f5;
   margin-top: 40px;
   border-radius: 8px;
+}
+.btn-google {
+  --background: #f5f5f5;
+  --color: #393939;
+  height: 50px;
+  width: 100%;
+  margin-top: 15vh;
+}
+.btn-google-content{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 10px 0px;
+}
+
+.btn-google-text{
+  flex: 1;
+}
+.logo-google{
+  margin-right: 10px;
 }
