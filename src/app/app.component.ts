@@ -29,7 +29,7 @@ export class AppComponent {
       this.authService.$isLogin
         .subscribe(login => {
           if(login) {
-            this.router.navigate(['/home'])
+            this.router.navigate(['/tabs'])
           } else {
             this.router.navigate(['/login'])
           }
