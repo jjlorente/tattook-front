@@ -6,12 +6,17 @@
       la dirección <br>
       donde trabajas.
     </div>
-    <div class="form-container">
-      <input #addressInput (change)="onAddressInputChange($event)" type="text" placeholder="Dirección" class="item-input"/>
+    <div #formContainer class="form-container">
+      <input #input="ngModel" (input)="onKeyUp()" (focus)="onFocusChange($event)" (focusout)="onFocusChange($event)" [(ngModel)]="addressInput" type="text" placeholder="Dirección" class="item-input"/>
       <ion-button (click)="getGeolocation()" class="navigate-btn" fill="outline" icon-only>
         <ion-icon class="navigate-icon" name="navigate-outline"></ion-icon>
       </ion-button>
     </div>
+    <ion-list class="prediction-list" [ngStyle]="predictionListStyles" *ngIf="predictions.length">
+      <ion-item *ngFor="let item of predictions" (click)="onClickAddress(item)">
+        <ion-label><ion-icon name="location-outline"></ion-icon> {{item.description}}</ion-label>
+      </ion-item>
+    </ion-list>
     <div class="desc-info">
       Está información nos ayudará a mostrarte en los resultados de búsqueda de clientes potenciales por cercanía.
     </div>
