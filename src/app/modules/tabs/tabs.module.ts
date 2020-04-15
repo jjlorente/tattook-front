@@ -21,8 +21,20 @@ import { TabsPage } from './tabs.page';
             loadChildren: () => import('../profile/profile.module').then( m => m.ProfileModule)
           },
           {
+            path: 'wall',
+            loadChildren: () => import('../wall/wall.module').then( m => m.WallModule)
+          },
+          {
+            path: 'gallery',
+            loadChildren: () => import('../gallery/gallery.module').then( m => m.GalleryModule)
+          },
+          {
+            path: 'favorites',
+            loadChildren: () => import('../favorites/favorites.module').then( m => m.FavoritesModule)
+          },
+          {
             path: '',
-            redirectTo: '/tabs/profile',
+            redirectTo: '/tabs/wall',
             pathMatch: 'full'
           }
         ]

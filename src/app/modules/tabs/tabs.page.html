@@ -8,20 +8,20 @@
   <ion-router-outlet></ion-router-outlet>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="home">
-        <ion-icon name="home-outline"></ion-icon>
+      <ion-tab-button tab="wall" [routerLink]="['wall']">
+        <ion-icon name="home"></ion-icon>
       </ion-tab-button>
   
-      <ion-tab-button tab="images">
-        <ion-icon name="images-outline"></ion-icon>
+      <ion-tab-button tab="gallery" [routerLink]="['gallery']">
+        <ion-icon name="images"></ion-icon>
       </ion-tab-button>
   
-      <ion-tab-button tab="outline">
-        <ion-icon name="heart-outline"></ion-icon>
+      <ion-tab-button tab="favorites" [routerLink]="['favorites']">
+        <ion-icon name="heart"></ion-icon>
       </ion-tab-button>
   
       <ion-tab-button tab="profile" [routerLink]="['profile']">
-        <ion-icon name="person-outline"></ion-icon>
+        <ion-icon name="person"></ion-icon>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
