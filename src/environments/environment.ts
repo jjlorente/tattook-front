@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://tattook-back-dev.herokuapp.com:3000'
+  apiUrl: 'https://tattook-back-dev.herokuapp.com',
+  google_client_id_web: '712092709894-piidfm3f1chc77i18bu15npvqse9d6q5.apps.googleusercontent.com'
 };
 
 /*

@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Platform, ToastController } from '@ionic/angular';
+import { ToastController, Platform } from '@ionic/angular';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
+
+import { AuthService as SocialWebLoginService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+ 
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -12,16 +16,27 @@ export class AuthService {
 
   readonly $isLogin = this.isLogin.asObservable();
 
-  constructor(private http: HttpClient, private googlePlus: GooglePlus, private toast: ToastController) { }
+  constructor(
+    private http: HttpClient,
+    private googlePlus: GooglePlus,
+    private toast: ToastController,
+    private socialWebLoginService: SocialWebLoginService,
+    private platform: Platform
+  ) { }
     
   async loginWithGoogle(role, location = null, address = null){
-    const resGoogle = await this.googlePlus.login({})
+    let resGoogle;
+    if(this.platform.is('cordova')){
+      resGoogle = await this.googlePlus.login({})
+    } else {
+      resGoogle = await this.socialWebLoginService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    }
     let postObject: any = {
-      name: resGoogle.displayName,
+      name: resGoogle.displayName ? resGoogle.displayName : resGoogle.name,
       email: resGoogle.email,
-      provider_id: resGoogle.userId,
+      provider_id: resGoogle.userId ? resGoogle.userId : resGoogle.id,
       provider: "google",
-      picture: resGoogle.imageUrl,
+      picture: resGoogle.imageUrl ? resGoogle.imageUrl : resGoogle.photoUrl,
       role: role
     };
     if(location) postObject.location = location;
