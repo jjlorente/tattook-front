@@ -5,6 +5,7 @@ import { Platform, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
 import { LocationService } from '../../../shared/services/location.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { LoadingService } from 'src/app/core/services/loading.service';
 
 declare const google;
 @Component({
@@ -28,10 +29,8 @@ export class AddressFormComponent implements OnInit {
 
   constructor(
     private geolocation: Geolocation,
-    private platform: Platform,
-    private toast: ToastController,
-    private authService: AuthService,
-    private locationService: LocationService) { }
+    private locationService: LocationService,
+    public loadingService: LoadingService) { }
 
   ngOnInit() { }
 
@@ -100,18 +99,4 @@ export class AddressFormComponent implements OnInit {
         this.location.lng = res.result.geometry.location.lng;
       })
   }
-
-  async loginWithGoogle(){
-    if(this.platform.is("cordova")){
-      this.authService.loginWithGoogle('tattoo_artist', this.location, this.address);
-    } else {
-      const toast = await this.toast.create({
-        message: "Solo disponible en app móvil.",
-        color: "danger",
-        duration: 5000
-      })
-      toast.present();
-    }
-  }
-
 }

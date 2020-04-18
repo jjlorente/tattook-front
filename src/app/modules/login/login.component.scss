@@ -22,9 +22,7 @@
 #container p {
   font-size: 16px;
   line-height: 22px;
-
   color: #8c8c8c;
-
   margin: 0;
 }
 
@@ -36,10 +34,6 @@ ion-content ion-toolbar {
   --background: translucent;
 }
 
-.logo-google{
-  margin-right: 10px;
-}
-
 .btn-login-artist{
   position: absolute;
   width: 94vw;
@@ -48,21 +42,6 @@ ion-content ion-toolbar {
   --border-width: 1px;
 }
 
-.btn-google {
-  --background: #f5f5f5;
-  --color: #393939;
-  height: 50px;
+app-google-login-button{
   width: 100%;
-}
-.btn-google-content{
-  display: flex;
-  width: 100%;
-  align-items: center;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding: 10px 0px;
-}
-
-.btn-google-text{
-  flex: 1;
 }
