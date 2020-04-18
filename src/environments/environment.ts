@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://192.168.1.40:3000'
+  apiUrl: 'https://tattook-back-dev.herokuapp.com:3000'
 };
 
 /*
