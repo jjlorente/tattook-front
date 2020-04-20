@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Platform, ToastController } from '@ionic/angular';
-
-import { AuthService } from 'src/app/core/auth/services/auth.service';
 import { LocationService } from '../../../shared/services/location.service';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { Subject } from 'rxjs';
 
-declare const google;
+
 @Component({
   selector: 'address-form',
   templateUrl: 'address-form.component.html',
@@ -15,8 +13,9 @@ declare const google;
 })
 
 export class AddressFormComponent implements OnInit {
-  @ViewChild('input', {static: true}) input;
   @ViewChild('formContainer', {static: true}) formContainer;
+
+  inputText$:Subject<string> = new Subject();
 
   address = '';
   addressInput = '';
@@ -32,16 +31,26 @@ export class AddressFormComponent implements OnInit {
     private locationService: LocationService,
     public loadingService: LoadingService) { }
 
-  ngOnInit() { }
-
-  ngAfterViewInit(){
-    this.input.valueChanges
+  ngOnInit() { 
+    this.inputText$
       .pipe(
         debounceTime(200),
-        distinctUntilChanged()
-      ).subscribe(inputValue => {
-        this.onAddressInputChange(inputValue)
-      })
+        distinctUntilChanged(),
+        switchMap((inputValue:any) => {
+          this.onAddressInputChange(inputValue)
+          return inputValue
+        })
+      ).subscribe((res)=>{
+        if(this.addressInput !== this.address){
+          this.address = null;
+          this.location.lat = null;
+          this.location.lng = null;
+        }
+      });
+  }
+
+  onKeyUpInput($event){
+    this.inputText$.next($event.target.value)
   }
 
   getGeolocation(){
@@ -57,14 +66,6 @@ export class AddressFormComponent implements OnInit {
       this.predictionListStyles.top = this.formContainer.nativeElement.getBoundingClientRect().bottom + 'px';
       this.predictionListStyles.width =  this.formContainer.nativeElement.getBoundingClientRect().width + 'px';
     },300);
-  }
-
-  onKeyUp(){
-    if(this.addressInput !== this.address){
-      this.address = null;
-      this.location.lat = null;
-      this.location.lng = null;
-    }
   }
 
   onAddressInputChange(value){

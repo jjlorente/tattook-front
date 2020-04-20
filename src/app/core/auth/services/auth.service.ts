@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 
 import { AuthService as SocialWebLoginService } from "angularx-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import { GoogleLoginProvider } from "angularx-social-login";
  
 
 @Injectable({providedIn: 'root'})
@@ -15,6 +15,8 @@ export class AuthService {
   private isLogin: BehaviorSubject<boolean> = new BehaviorSubject(this.isAuthenticated());
 
   readonly $isLogin = this.isLogin.asObservable();
+
+  loginState:boolean;
 
   constructor(
     private http: HttpClient,
@@ -66,6 +68,7 @@ export class AuthService {
   }
 
   isAuthenticated():boolean{
+    this.loginState = localStorage.getItem("token")? true : false;
     return localStorage.getItem("token")? true : false;
   }
 

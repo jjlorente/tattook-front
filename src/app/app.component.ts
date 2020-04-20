@@ -16,20 +16,23 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authService: AuthService,
+    public authService: AuthService,
     public router: Router
   ) {
     this.initializeApp();
   }
-
+  
   initializeApp() {
+    
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.authService.$isLogin
         .subscribe(login => {
           if(login) {
-            this.router.navigate(['/tabs'])
+            if(this.router.url.indexOf('/login') !== -1) {
+              this.router.navigate(['/tabs'])
+            }
           } else {
             this.router.navigate(['/login'])
           }

@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { WallComponent } from './wall.component';
 import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
     imports: [
-        RouterModule.forChild([
-            {
-              path: '',
-              component: WallComponent
-            }
-        ])
+      IonicModule,
+      RouterModule.forChild([
+        {
+          path: '',
+          component: WallComponent
+        }
+      ])
     ],
     exports: [],
     declarations: [WallComponent],
