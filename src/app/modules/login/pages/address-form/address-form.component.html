@@ -8,13 +8,12 @@
     </div>
     <div #formContainer class="form-container">
       <input 
-        #input="ngModel"
-        (input)="onKeyUp()"
+        (keyup)="onKeyUpInput($event)"
         (focus)="onFocusChange($event)"
         (focusout)="onFocusChange($event)"
         [(ngModel)]="addressInput"
         type="text"
-        placeholder="Dirección" 
+        placeholder="Buscar dirección" 
         class="item-input"/>
       <ion-button (click)="getGeolocation()" class="navigate-btn" fill="outline" icon-only>
         <ion-icon class="navigate-icon" name="navigate-outline"></ion-icon>
