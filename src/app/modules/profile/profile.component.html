@@ -1,23 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Perfil</ion-title>
+    <ion-title>Profile</ion-title>
     <ion-buttons slot="end" style="padding-right:15px">
       <ion-icon (click)="onClickMenu()" name="menu-outline" size="large"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <div id="container">
-    PROFILE
-  </div>
-</ion-content>
-<ion-menu side="end" menuId="profileMenu" type="push" contentId="main" swipeGesture="true">
-  <ion-content>
-    <ion-list>
-      <ion-item>
-        <ion-icon name="exit-outline" style="margin-right:15px"></ion-icon> Cerrar sesión
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
+
+<ion-menu side="end" menuId="profileMenu" contentId="main" class="menuProfile">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Name User</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+      <ion-menu-toggle auto-hide="true">
+          <ion-item (click)="logoutButton()"><ion-icon name="exit-outline" style="margin-right:15px"></ion-icon> Cerrar sesión</ion-item>
+      </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 <ion-router-outlet id="main"></ion-router-outlet>
+
