@@ -15,7 +15,7 @@ import { Subject } from 'rxjs';
 export class AddressFormComponent implements OnInit {
   @ViewChild('formContainer', {static: true}) formContainer;
 
-  inputText$:Subject<string> = new Subject();
+  $inputText:Subject<string> = new Subject();
 
   address = '';
   addressInput = '';
@@ -32,7 +32,7 @@ export class AddressFormComponent implements OnInit {
     public loadingService: LoadingService) { }
 
   ngOnInit() { 
-    this.inputText$
+    this.$inputText
       .pipe(
         debounceTime(200),
         distinctUntilChanged(),
@@ -50,7 +50,7 @@ export class AddressFormComponent implements OnInit {
   }
 
   onKeyUpInput($event){
-    this.inputText$.next($event.target.value)
+    this.$inputText.next($event.target.value)
   }
 
   getGeolocation(){

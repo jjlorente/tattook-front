@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
 import { CustomerService } from 'src/app/core/services/customer.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -9,19 +10,17 @@ import { CustomerService } from 'src/app/core/services/customer.service';
 })
 export class ProfileComponent implements OnInit {
 
+  user:any;
+
   constructor(
     private menuCtrl: MenuController,
     private authService: AuthService,
     public customerService: CustomerService) { }
 
   ngOnInit() {
-    this.customerService.getCustomer()
-    .subscribe((res:any) => {
-      console.log(res);
-    }, async (err) => {
-        // const toast = await this.toast.create({message:'Error customer Info.', color: 'danger', duration: 5000})
-        // toast.present();
-    })
+    this.customerService.getCustomer();
+    this.customerService.$customer
+      .subscribe(user=> this.user = user)
   }
 
   async onClickMenu(){
