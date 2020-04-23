@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 
 import { AuthService as SocialWebLoginService } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
+import { PortfolioService } from 'src/app/modules/gallery/portfolio.service';
+import { CustomerService } from '../../services/customer.service';
  
 
 @Injectable({providedIn: 'root'})
@@ -23,7 +25,9 @@ export class AuthService {
     private googlePlus: GooglePlus,
     private toast: ToastController,
     private socialWebLoginService: SocialWebLoginService,
-    private platform: Platform
+    private platform: Platform,
+    private portfolioService: PortfolioService,
+    private customerService: CustomerService
   ) { }
     
   async loginWithGoogle(role, location = null, address = null){
@@ -54,7 +58,14 @@ export class AuthService {
       })
   }
 
-  logOut(){
+  async logOut(){
+    if(this.platform.is('cordova')){
+      await this.googlePlus.logout();
+    } else {    
+      await this.socialWebLoginService.signOut();
+    }    
+    this.customerService.clearStore();
+    this.portfolioService.clearStore();
     localStorage.removeItem("token");
     this.isLogin.next(false);
   }

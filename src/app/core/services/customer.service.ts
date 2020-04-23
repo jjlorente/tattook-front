@@ -16,6 +16,10 @@ export class CustomerService {
         private toast: ToastController,
         public sanitizer: DomSanitizer
     ) { }
+      
+    clearStore(){
+      this.customerStore.next(null)
+    }
 
     getCustomer(){
         this.http.get(environment.apiUrl+'/user')

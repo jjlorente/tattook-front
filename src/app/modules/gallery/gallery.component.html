@@ -1,3 +1,15 @@
-<div id="container">
-  GALLERY
-</div>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Portfolios</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngFor="let portfolio of portfolioService.$portfolios | async">
+    <app-portfolio-overview [portfolio]="portfolio"></app-portfolio-overview>
+  </div>
+  <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+    <ion-fab-button (click)="presentNewPortfolioModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -17,7 +17,9 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     public customerService: CustomerService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  ionViewWillEnter(){
     this.customerService.getCustomer();
     this.customerService.$customer
       .subscribe(user=> this.user = user)
