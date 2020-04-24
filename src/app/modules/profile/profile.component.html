@@ -1,20 +1,38 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Profile</ion-title>
+    <ion-title>Perfil</ion-title>
     <ion-buttons slot="end" style="padding-right:15px">
       <ion-icon (click)="onClickMenu()" name="menu-outline" size="large"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div>
-    <img *ngIf="user && user.picture" [src]="user.picture"/>
+  <div class="containerProfile">
+    <div style="margin-top: 20px;">
+      <img id="profileImg" *ngIf="user && user.picture" [src]="user.picture"/>
+    </div>
+    <div class="divProfile scoreFollows">
+      <p class="follows"><b>4.3 <ion-icon name="star-half"></ion-icon></b></p>
+      <p>Valoración</p>
+    </div>
+    <div class="divProfile scoreFollows">
+      <p class="follows"><b>324</b></p>
+      <p>Seguidores</p>
+    </div>
+  </div>
+  <p style="margin-left:17px;" *ngIf="user && user.name"><b>{{user.name}}</b></p>
+  <p class="description" *ngIf="user && user.full_address" style="font-size: 13px;">{{user.full_address}}</p>
+  <p class="description" *ngIf="user && user.description">{{user.description}}</p>
+  <ion-button  expand="full" color="dark">Editar perfil</ion-button>
+  <div class="photos">
+    <ion-button style="width:50%;" color="medium">Tattoos</ion-button>
+    <ion-button style="width:50%;" color="medium">Carpetas</ion-button>
   </div>
 </ion-content>
 <ion-menu side="end" menuId="profileMenu" contentId="main" class="menuProfile">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Name User</ion-title>
+        <ion-title>Ajustes</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
