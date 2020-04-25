@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
 import { CustomerService } from 'src/app/core/services/customer.service';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -17,12 +16,15 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     public customerService: CustomerService) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.customerService.$customer
+      .subscribe(user=> {
+        this.user = user;
+      })
+  }
 
   ionViewWillEnter(){
     this.customerService.getCustomer();
-    this.customerService.$customer
-      .subscribe(user=> this.user = user)
   }
 
   async onClickMenu(){

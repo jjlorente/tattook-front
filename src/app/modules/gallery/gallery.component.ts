@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from './portfolio.service';
+import { PortfolioService } from './services/portfolio.service';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -11,8 +11,7 @@ export class GalleryComponent implements OnInit {
 
   constructor(public portfolioService: PortfolioService, private alertCtrl: AlertController) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
   
   ionViewWillEnter(){
     this.portfolioService.getPortfolios()

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://tattook-back-dev.herokuapp.com',
-  // apiUrl: 'http://localhost:3000',
+  // apiUrl: 'http://192.168.1.40:3000',
   google_client_id_web: '712092709894-piidfm3f1chc77i18bu15npvqse9d6q5.apps.googleusercontent.com'
 };
 

@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { AuthService as SocialWebLoginService } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
-import { PortfolioService } from 'src/app/modules/gallery/portfolio.service';
+import { PortfolioService } from 'src/app/modules/gallery/services/portfolio.service';
 import { CustomerService } from '../../services/customer.service';
  
 
@@ -60,14 +60,19 @@ export class AuthService {
 
   async logOut(){
     if(this.platform.is('cordova')){
+      try {
+        await this.googlePlus.trySilentLogin({})
+      } catch (error) {
+        console.log(error)
+      } 
       await this.googlePlus.logout();
-    } else {    
+    } else {
       await this.socialWebLoginService.signOut();
-    }    
-    this.customerService.clearStore();
-    this.portfolioService.clearStore();
+    }
     localStorage.removeItem("token");
     this.isLogin.next(false);
+    this.customerService.clearStore();
+    this.portfolioService.clearStore();
   }
 
   private setToken(token: any) {

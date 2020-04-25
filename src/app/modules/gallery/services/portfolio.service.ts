@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, pipe } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { tap } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class PortfolioService {
@@ -18,6 +19,7 @@ export class PortfolioService {
   getPortfolios(){
     this.http.get(environment.apiUrl+'/portfolio')
       .subscribe((portfolios)=>{
+        console.log(portfolios)
         this.portfoliosStore.next(portfolios);
       })
   }
@@ -30,10 +32,19 @@ export class PortfolioService {
   }
 
   removePortfolio(id){
-    this.http.delete(environment.apiUrl+'/portfolio/'+id)
-      .subscribe((res)=>{
-        this.getPortfolios();
-      })
+    return this.http.delete(environment.apiUrl+'/portfolio/'+id)
+      .pipe(
+        tap((res)=>{
+          this.getPortfolios();
+        })
+      )
+  }
+
+  editPortfolio(id, name){
+    return this.http.put(environment.apiUrl+'/portfolio/'+id, {name})
+      .pipe(
+        tap(res=>this.getPortfolios())
+      )
   }
 
 }

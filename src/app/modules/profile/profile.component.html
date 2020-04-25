@@ -8,8 +8,8 @@
 </ion-header>
 <ion-content>
   <div class="containerProfile">
-    <div style="margin-top: 20px;">
-      <img id="profileImg" *ngIf="user && user.picture" [src]="user.picture"/>
+    <div *ngIf="user && user.picture" style="margin-top: 20px;">
+      <img id="profileImg" [src]="user.picture"/>
     </div>
     <div class="divProfile scoreFollows">
       <p class="follows"><b>4.3 <ion-icon name="star-half"></ion-icon></b></p>
