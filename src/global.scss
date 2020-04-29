@@ -28,15 +28,46 @@
 @import "./assets/fonts/fonts.scss";
 
 
+$icon-color: #d1d4d6;
+
 ion-button{
   font-family: 'Anton',sans-serif;
 }
 
-//GOOGLE SELECT ADDRESS
-.pac-icon{
-  vertical-align: text-bottom !important;
+ion-tab-button[aria-selected=true] {
+  --background-focused: var(--ion-color-app-secondary) !important;
+  color: var(--ion-color-app-secondary) !important;
+  --color-focused: var(--ion-color-app-secondary) !important;
 }
-.pac-item{
-  line-height: 52px !important;
-  height: 52px !important;
+.alert-primary{
+  --background: var(--ion-color-app-primary-dark) !important;
+  .alert-title{
+    color:$icon-color !important;
+  }
+  .alert-input{
+    color:$icon-color !important;
+  }
+  .alert-input:focus{
+    margin-bottom: 4px;
+    border-bottom: 2px solid var(--ion-color-app-secondary, var(--ion-color-app-secondary));
+  }
+  color:$icon-color !important;
+  .alert-button {
+    color: var(--ion-color-app-secondary) !important;
+  }
+}
+
+.item-interactive.item-has-focus{
+  --highlight-background: var(--ion-color-app-secondary);
+}
+
+ion-card{
+  --background: white;
+  box-shadow: none;
+  border-radius: 0px;
+  color: var(--ion-color-app-primary-dark) !important;
+}
+
+.icon-topbar{
+  color: $icon-color;
 }

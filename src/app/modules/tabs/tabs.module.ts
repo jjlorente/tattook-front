@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
+import { NewImageModalComponent } from '../gallery/components/new-image-modal/new-image-modal.component';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { TabsPage } from './tabs.page';
       }
     ])
   ],
-  declarations: [TabsPage]
+  declarations: [TabsPage, NewImageModalComponent],
+  entryComponents: [NewImageModalComponent]
 })
 export class TabsPageModule {}

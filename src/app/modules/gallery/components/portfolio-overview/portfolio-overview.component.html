@@ -1,9 +1,12 @@
-<ion-card (click)="openBoard(portfolio._id, portfolio.name)">
+<ion-card class="ion-color-app-tercero" (click)="openBoard()">
   <ion-card-header>
-    <ion-card-title>{{portfolio.name}}</ion-card-title>
+    <ion-card-title>{{portfolioName}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    Keep close to Nature's heart... and break clear away, once in awhile,
-    and climb a mountain or spend a week in the woods. Wash your spirit clean.
+    <ion-row>
+      <ion-col size="3" *ngFor="let image of works">
+        <img class="collection-item" [src]="image.picture"/>
+      </ion-col>
+    </ion-row>
   </ion-card-content>
 </ion-card>
