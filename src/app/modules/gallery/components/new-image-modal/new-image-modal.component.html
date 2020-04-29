@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="app-primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title size="large">
+      Guardar imagen
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="big-img-container">
+    <img class="big-img" src="{{image}}"/>
+  </div>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-textarea class="textarea-description" placeholder="Añade una descripción..."></ion-textarea>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title color="app-primary">Agregar a tablero</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="select-board-container">
+        <div *ngFor="let board of portfolioService.$portfolios | async">
+          <ion-button class="btn-board" color="app-secondary" expand="block" size="large" shape="round" (click)="saveImage(board)">
+            {{board.name}}
+          </ion-button>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

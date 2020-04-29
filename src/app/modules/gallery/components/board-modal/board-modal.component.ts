@@ -2,6 +2,7 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { PopoverCrudComponent } from 'src/app/modules/shared/components/popover-crud/popover-crud.component';
 import { PortfolioService } from '../../services/portfolio.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'board-modal',
@@ -9,21 +10,29 @@ import { PortfolioService } from '../../services/portfolio.service';
   styleUrls: ['board-modal.component.scss']
 })
 
-export class BoardModalComponent implements OnInit, AfterViewInit {
-  @Input('id') id: any;
-  @Input('name') name: any;
+export class BoardModalComponent implements OnInit {
+  @Input('portfolioName') portfolioName:any;  
+  @Input('portfolioId') portfolioId:any;
+  @Input('works') works
 
   constructor(
     private modalCtrl: ModalController,
     public popoverController: PopoverController,
-    private portfolioService: PortfolioService) { }
+    public portfolioService: PortfolioService) { }
+
+  ngOnInit() { 
+    this.portfolioService.getWorks(this.portfolioId, 30)
+      .subscribe((works)=>{
+        this.works = works;
+      })
+  }
 
   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
       component: PopoverCrudComponent,
       event: ev,
       componentProps:{
-        'name': this.name
+        'name': this.portfolioName
       },
       translucent: true
     });
@@ -38,22 +47,17 @@ export class BoardModalComponent implements OnInit, AfterViewInit {
     await popover.present();
   }
 
-  ngOnInit() { }
-
-  ngAfterViewInit(){
-  }
-
   async close(){
     await this.modalCtrl.dismiss();
   }
 
   editBoard(name){
-    this.portfolioService.editPortfolio(this.id, name)
+    this.portfolioService.editPortfolio(this.portfolioId, name)
       .subscribe((res=>this.close()))
   }
 
   deleteBoard(){
-    this.portfolioService.removePortfolio(this.id)
+    this.portfolioService.removePortfolio(this.portfolioId)
     .subscribe((res)=>{
       this.close();
     })

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="app-primary">
     <ion-buttons slot="start">
       <ion-button (click)="close()">
         <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
@@ -11,10 +11,19 @@
       </ion-button>
     </ion-buttons>
     <ion-title size="large">
-      {{name}}
+      {{portfolioName}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div></div>
+  <!-- <ion-row>
+    <ion-col size="6" *ngFor="let image of works">
+      
+    </ion-col>
+  </ion-row> -->
+  <div class="collection ion-padding" style="column-count: 2;">
+    <div class="collection-item" text-center *ngFor="let image of works">
+      <img [src]="image.picture"/>
+    </div>
+  </div>
 </ion-content>
