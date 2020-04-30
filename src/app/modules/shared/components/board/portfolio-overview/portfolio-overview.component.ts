@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BoardModalComponent } from '../board-modal/board-modal.component';
 import { IonRouterOutlet } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import { PortfolioService } from '../../services/portfolio.service';
 import { BehaviorSubject } from 'rxjs';
+import { PortfolioService } from 'src/app/modules/gallery/services/portfolio.service';
 
 @Component({
   selector: 'app-portfolio-overview',

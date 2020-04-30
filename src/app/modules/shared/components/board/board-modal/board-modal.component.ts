@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { PopoverCrudComponent } from 'src/app/modules/shared/components/popover-crud/popover-crud.component';
-import { PortfolioService } from '../../services/portfolio.service';
-import { BehaviorSubject } from 'rxjs';
+import { PortfolioService } from 'src/app/modules/gallery/services/portfolio.service';
 
 @Component({
   selector: 'board-modal',

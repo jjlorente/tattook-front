@@ -6,9 +6,11 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { EditProfileModalComponent } from './components/edit-profile-modal/edit-profile-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BoardModule } from '../shared/components/board/board.module';
 
 @NgModule({
   imports: [
+    BoardModule,
     IonicModule,
     CommonModule,
     ReactiveFormsModule,

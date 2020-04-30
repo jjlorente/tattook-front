@@ -3,13 +3,12 @@ import { NgModule } from '@angular/core';
 import { GalleryComponent } from './gallery.component';
 import { RouterModule } from '@angular/router';
 import { IonicModule, PopoverController } from '@ionic/angular';
-import { PortfolioOverviewComponent } from './components/portfolio-overview/portfolio-overview.component';
 import { CommonModule } from '@angular/common';
-import { BoardModalComponent } from './components/board-modal/board-modal.component';
-import { PopoverCrudComponent } from '../shared/components/popover-crud/popover-crud.component';
+import { BoardModule } from '../shared/components/board/board.module';
 
 @NgModule({
     imports: [
+      BoardModule,
       IonicModule,
       CommonModule,
       RouterModule.forChild([
@@ -21,16 +20,9 @@ import { PopoverCrudComponent } from '../shared/components/popover-crud/popover-
     ],
     exports: [],
     declarations: [
-      GalleryComponent,
-      PortfolioOverviewComponent,
-      BoardModalComponent,
-      PopoverCrudComponent
+      GalleryComponent
     ],
-    entryComponents: [
-      PortfolioOverviewComponent,
-      BoardModalComponent,
-      PopoverCrudComponent
-    ],
+    entryComponents: [],
     providers: [],
 })
 export class GalleryModule { }

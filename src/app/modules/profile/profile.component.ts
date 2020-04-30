@@ -3,6 +3,7 @@ import { MenuController, ModalController, IonRouterOutlet } from '@ionic/angular
 import { AuthService } from 'src/app/core/auth/services/auth.service';
 import { CustomerService } from 'src/app/core/services/customer.service';
 import { EditProfileModalComponent } from './components/edit-profile-modal/edit-profile-modal.component';
+import { PortfolioService } from '../gallery/services/portfolio.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -17,7 +18,8 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     public customerService: CustomerService,
     private modalCtrl: ModalController,
-    private routerOutlet: IonRouterOutlet) { }
+    private routerOutlet: IonRouterOutlet,
+    public portfolioService: PortfolioService) { }
 
   ngOnInit() { 
     this.customerService.$customer
@@ -28,6 +30,9 @@ export class ProfileComponent implements OnInit {
 
   ionViewWillEnter(){
     this.customerService.getCustomer();
+    if(!this.portfolioService.getPortfolioCurrentValue()){
+      this.portfolioService.getPortfolios()
+    }
   }
 
   async onClickMenu(){
