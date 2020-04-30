@@ -7,8 +7,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-router-outlet id="main"></ion-router-outlet> 
   <div class="containerProfile">
-    <div *ngIf="user && user.picture" style="margin-top: 20px;">
+    <div *ngIf="user && user.picture" style="margin-top: 20px;" class="divProfile">
       <img id="profileImg" [src]="user.picture"/>
     </div>
     <div class="divProfile scoreFollows">
@@ -23,7 +24,7 @@
   <p style="margin-left:17px;" *ngIf="user && user.name"><b>{{user.name}}</b></p>
   <p class="description" *ngIf="user && user.full_address" style="font-size: 13px;">{{user.full_address}}</p>
   <p class="description" *ngIf="user && user.description">{{user.description}}</p>
-  <ion-button  expand="full" color="dark">Editar perfil</ion-button>
+  <ion-button  expand="full" color="app-secondary" (click)="openEditProfile()" >Editar perfil</ion-button>
   <div class="photos">
     <ion-button style="width:50%;" color="medium">Tattoos</ion-button>
     <ion-button style="width:50%;" color="medium">Carpetas</ion-button>
@@ -43,5 +44,4 @@
       </ion-list>
     </ion-content>
   </ion-menu>
-<ion-router-outlet id="main"></ion-router-outlet>
 
