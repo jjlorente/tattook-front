@@ -30,9 +30,15 @@ export class CustomerService {
                     }
                     return res[0]
                 })
-            )
-            .subscribe((res)=>{
+            ).subscribe((res)=>{
                 this.customerStore.next(res);
+            })
+    }
+
+    setCustomerProfile(user){
+        this.http.put(environment.apiUrl+'/user',user)
+            .subscribe((res)=>{
+                this.getCustomer()
             })
     }
 }
