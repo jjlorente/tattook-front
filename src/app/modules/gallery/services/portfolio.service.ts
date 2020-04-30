@@ -18,6 +18,10 @@ export class PortfolioService {
     this.portfoliosStore.next(null)
   }
 
+  getPortfolioCurrentValue(){
+    return this.portfoliosStore.getValue();
+  }
+
   getPortfolios(){
     this.http.get(environment.apiUrl+'/portfolio')
       .pipe(

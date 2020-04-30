@@ -26,6 +26,9 @@ export class GalleryComponent implements OnInit {
     this.portfolioService.$percentDone.subscribe((percent)=>{
       console.log(percent,'%')
     })
+    if(!this.portfolioService.getPortfolioCurrentValue()){
+      this.portfolioService.getPortfolios()
+    }
   }
   
   async presentNewPortfolioModal() {
