@@ -15,27 +15,7 @@
   bottom: -10px;
   text-align: center;
 }
-.imageContainer{
-  display:inline-block;
-  position:relative;
-  width: 150px  !important;
-  height: 100px !important;
-}
-.btnEditPicture{
-  background-color: #EDF0F2;
-  border-radius: 50px;
-  position: absolute;
-  border-radius:100px;
-  bottom:0.1px;
-  right:34px;
-  width: 32px;
-  height: 30px;
-}
-.icnEditPicture{
-  position: relative;
-  left: -6px;
-  top: -1px;
-}
+
 .scoreFollows{
   margin-top: 20px;
 }
@@ -49,7 +29,7 @@
   margin-left:17px;
 }
 .divProfile{
-  width: 30%;
+  width: 33%;
   text-align: center;
   justify-content: space-between;
 }
