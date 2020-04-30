@@ -37,7 +37,9 @@ export class ProfileComponent implements OnInit {
   async logoutButton(){
     this.authService.logOut();
   }
-
+  async editPicture(){
+    console.log("Edit Picture");
+  }
   async openEditProfile() {
     const modal = await this.modalCtrl.create({
       component: EditProfileModalComponent,

@@ -9,8 +9,11 @@
 <ion-content>
   <ion-router-outlet id="main"></ion-router-outlet> 
   <div class="containerProfile">
-    <div *ngIf="user && user.picture" style="margin-top: 20px;" class="divProfile">
+    <div *ngIf="user && user.picture" style="margin-top: 20px;" class="divProfile imageContainer">
       <img id="profileImg" [src]="user.picture"/>
+      <button class="btnEditPicture" ion-button>
+        <ion-icon (click)="editPicture()" class="icnEditPicture" color="app-secondary" slot="icon-only" size="large" name="add-circle"></ion-icon>
+      </button>
     </div>
     <div class="divProfile scoreFollows">
       <p class="follows"><b>4.3 <ion-icon name="star-half"></ion-icon></b></p>
