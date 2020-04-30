@@ -28,9 +28,14 @@
   <p class="description" *ngIf="user && user.full_address" style="font-size: 13px;">{{user.full_address}}</p>
   <p class="description" *ngIf="user && user.description">{{user.description}}</p>
   <ion-button  expand="full" color="app-secondary" (click)="openEditProfile()" >Editar perfil</ion-button>
-  <div class="photos">
-    <ion-button style="width:50%;" color="medium">Tattoos</ion-button>
-    <ion-button style="width:50%;" color="medium">Carpetas</ion-button>
+  <div class="board-list ion-margin-top">
+    <h2 class="ion-padding-start">Carpetas</h2>
+    <div *ngFor="let portfolio of portfolioService.$portfolios | async">
+      <app-portfolio-overview 
+        [portfolioName]="portfolio.name" 
+        [portfolioId]="portfolio._id" 
+        [works]="portfolio.works"></app-portfolio-overview>
+    </div>
   </div>
 </ion-content>
 <ion-menu side="end" menuId="profileMenu" contentId="main" class="menuProfile">
