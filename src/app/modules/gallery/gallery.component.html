@@ -12,8 +12,8 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div *ngFor="let portfolio of portfolioService.$portfolios | async">
-    <app-portfolio-overview 
+  <div style="padding:5px 10px" *ngFor="let portfolio of portfolioService.$portfolios | async">
+    <app-portfolio-overview
       [portfolioName]="portfolio.name" 
       [portfolioId]="portfolio._id" 
       [works]="portfolio.works"></app-portfolio-overview>

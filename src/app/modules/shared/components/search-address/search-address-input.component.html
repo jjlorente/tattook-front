@@ -1,0 +1,15 @@
+<div #formContainer class="form-container">
+  <input 
+    (keyup)="onKeyUpInput($event)"
+    (focus)="onFocusChange($event)"
+    (focusout)="onFocusChange($event)"
+    [(ngModel)]="addressInput"
+    type="text"
+    placeholder="Buscar dirección" 
+    class="item-input-address"/>
+</div>
+<ion-list class="prediction-list" [ngStyle]="predictionListStyles" *ngIf="predictions.length">
+  <ion-item *ngFor="let item of predictions" (click)="onClickAddress(item)">
+    <ion-label><ion-icon name="location-outline"></ion-icon> {{item.description}}</ion-label>
+  </ion-item>
+</ion-list>

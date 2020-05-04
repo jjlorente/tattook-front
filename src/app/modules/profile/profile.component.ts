@@ -11,6 +11,13 @@ import { PortfolioService } from '../gallery/services/portfolio.service';
 })
 export class ProfileComponent implements OnInit {
 
+  slidesOpts = {
+    slidesPerView:1.25,
+    spaceBetween:5,
+    setWrapperSize: true,
+    centeredSlides: true
+  }
+
   user:any;
 
   constructor(
@@ -55,6 +62,7 @@ export class ProfileComponent implements OnInit {
         'username': this.user.name,
         'description': this.user.description,
         'address': this.user.full_address,
+        'location': this.user.location,
         'picture': this.user.picture
       },
       cssClass: 'modal'

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform, ToastController } from '@ionic/angular';
-import { AuthService } from 'src/app/core/auth/services/auth.service';
 
 @Component({
     selector: 'login-page',

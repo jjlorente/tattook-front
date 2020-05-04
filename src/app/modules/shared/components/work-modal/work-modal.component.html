@@ -10,20 +10,10 @@
         <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title size="large">
-      {{portfolioName}}
-    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <!-- <ion-row>
-    <ion-col size="6" *ngFor="let image of works">
-      
-    </ion-col>
-  </ion-row> -->
-  <div class="collection ion-padding" style="column-count: 2;">
-    <div class="collection-item" text-center *ngFor="let work of works" (click)="onClickWork(work)">
-      <img [src]="work.picture"/>
-    </div>
+  <div class="big-img-container">
+    <img class="big-img" src="{{thumb.picture}}"/>
   </div>
 </ion-content>

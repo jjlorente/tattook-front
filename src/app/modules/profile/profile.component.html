@@ -27,12 +27,15 @@
   <ion-button  expand="full" color="app-secondary" (click)="openEditProfile()" >Editar perfil</ion-button>
   <div class="board-list ion-margin-top">
     <h2 class="ion-padding-start">Carpetas</h2>
-    <div *ngFor="let portfolio of portfolioService.$portfolios | async">
-      <app-portfolio-overview 
-        [portfolioName]="portfolio.name" 
-        [portfolioId]="portfolio._id" 
-        [works]="portfolio.works"></app-portfolio-overview>
-    </div>
+    <ion-slides [options]="slidesOpts">
+      <ion-slide *ngFor="let portfolio of portfolioService.$portfolios | async">
+        <app-portfolio-overview 
+          style="width: 100%;"
+          [portfolioName]="portfolio.name" 
+          [portfolioId]="portfolio._id" 
+          [works]="portfolio.works"></app-portfolio-overview>
+      </ion-slide>
+    </ion-slides>
   </div>
 </ion-content>
 <ion-menu side="end" menuId="profileMenu" contentId="main" class="menuProfile">

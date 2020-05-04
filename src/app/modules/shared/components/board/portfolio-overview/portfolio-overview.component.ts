@@ -36,5 +36,11 @@ export class PortfolioOverviewComponent implements OnInit {
       cssClass: 'modal'
     });
     await modal.present();
+    modal.onWillDismiss()
+      .then((res)=>{
+        if(res.data){
+          this.portfolioService.getPortfolios();
+        }
+      })
   }
 }

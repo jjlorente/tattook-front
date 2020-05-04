@@ -8,9 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login.component';
 import { AddressFormComponent } from "./pages/address-form/address-form.component";
 import { GoogleLoginButtonComponent } from './components/google-login-button/google-login-button.component';
+import { SearchAddressInputModule } from '../shared/components/search-address/search-address-input.module';
 
 @NgModule({
   imports: [
+    SearchAddressInputModule,
     HttpClientModule,
     CommonModule,
     FormsModule,

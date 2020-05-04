@@ -13,21 +13,20 @@
 <ion-content>
   <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
     <ion-list inset="true" class="ion-no-margin ion-no-padding">
-      <ion-item>
-        <ion-label position="floating">Nombre: </ion-label>
-        <ion-input type="text" formControlName="username"></ion-input>
-      </ion-item>
-    
-      <ion-item>
-          <ion-label position="floating">Descripción: </ion-label>
-          <!-- <ion-input type="text" ></ion-input> -->
-          <ion-textarea
-            rows="6"
-            class="textarea-description" 
-            placeholder="Añade una descripción..." 
-            formControlName="description"></ion-textarea>
-      </ion-item>
+      <label>Nombre</label> 
+      <input class="item-input" type="text" formControlName="username"/>
+      <label>Descripción</label> 
+      <textarea
+        rows="3"
+        class="textarea-description item-input" 
+        placeholder="Añade una descripción..." 
+        formControlName="description"></textarea>
+       <label>Dirección</label> 
+      <app-search-address-input
+        (onAddressSelected)="onAddressSelected($event)"
+        [addressInput]="address"
+        style="width: 100%;"></app-search-address-input>
     </ion-list>
-    <ion-button type="submit" color="app-secondary" [disabled]="!profileForm.valid">Aceptar</ion-button>
+    <ion-button class="ion-margin ion-float-right" type="submit" color="app-secondary" [disabled]="!profileForm.valid">Aceptar</ion-button>
   </form>
 </ion-content>

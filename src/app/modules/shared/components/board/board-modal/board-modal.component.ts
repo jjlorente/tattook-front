@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { Component, OnInit, Input } from '@angular/core';
+import { ModalController, PopoverController, IonRouterOutlet } from '@ionic/angular';
 import { PopoverCrudComponent } from 'src/app/modules/shared/components/popover-crud/popover-crud.component';
 import { PortfolioService } from 'src/app/modules/gallery/services/portfolio.service';
+import { WorkModalComponent } from '../../work-modal/work-modal.component';
 
 @Component({
   selector: 'board-modal',
@@ -12,7 +13,9 @@ import { PortfolioService } from 'src/app/modules/gallery/services/portfolio.ser
 export class BoardModalComponent implements OnInit {
   @Input('portfolioName') portfolioName:any;  
   @Input('portfolioId') portfolioId:any;
-  @Input('works') works
+  @Input('works') works;
+
+  refreshPortfoliosOnClose = false;
 
   constructor(
     private modalCtrl: ModalController,
@@ -46,8 +49,9 @@ export class BoardModalComponent implements OnInit {
     await popover.present();
   }
 
-  async close(){
-    await this.modalCtrl.dismiss();
+  async close(event:boolean = false){
+    event = this.refreshPortfoliosOnClose;
+    await this.modalCtrl.dismiss(event);
   }
 
   editBoard(name){
@@ -60,5 +64,29 @@ export class BoardModalComponent implements OnInit {
     .subscribe((res)=>{
       this.close();
     })
+  }
+
+  async onClickWork(work){
+    const modal = await this.modalCtrl.create({
+      component: WorkModalComponent,
+      swipeToClose: true,
+      cssClass: 'modal',
+      componentProps: {
+        'thumb': work,
+        'portfolioId': this.portfolioId 
+      },
+    });
+    await modal.present();
+    modal.onWillDismiss()
+      .then((res)=>{
+        console.log('evento',res)
+        if(res.data === 'delete'){
+          this.refreshPortfoliosOnClose = true;
+          this.portfolioService.getWorks(this.portfolioId, 30)
+          .subscribe((works)=>{
+            this.works = works;
+          })
+        }
+      })
   }
 }
