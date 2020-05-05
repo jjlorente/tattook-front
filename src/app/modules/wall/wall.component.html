@@ -10,8 +10,8 @@
 </ion-header>
 <ion-content>
   <div class="collection ion-padding" style="column-count: 2;">
-    <div class="collection-item" *ngFor="let work of workService.$works | async">
-      <img [src]="work.picture"/>
+    <div class="collection-item" *ngFor="let item of workService.$works | async">
+      <img [src]="item.thumb.picture"/>
     </div>
   </div>
 </ion-content>
