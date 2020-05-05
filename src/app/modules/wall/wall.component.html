@@ -1,3 +1,17 @@
-<div id="container">
-  WALL
-</div>
+<ion-header>
+  <ion-toolbar color="app-primary">
+    <ion-title>Muro</ion-title>
+    <ion-buttons slot="end">
+      <ion-button style="width: 55px;" color="app-secondary">
+        <ion-icon slot="icon-only" size="large" name="chatbubbles"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="collection ion-padding" style="column-count: 2;">
+    <div class="collection-item" *ngFor="let work of workService.$works | async">
+      <img [src]="work.picture"/>
+    </div>
+  </div>
+</ion-content>

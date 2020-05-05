@@ -1,4 +1,7 @@
+import { WorkService } from './../shared/components/work-modal/work.service';
+import { PortfolioService } from 'src/app/modules/gallery/services/portfolio.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-wall',
@@ -6,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wall.component.scss'],
 })
 export class WallComponent implements OnInit {
-
-  constructor() { }
+  work:any;
+  constructor(
+    public workService: WorkService
+  ) {}
 
   ngOnInit() {}
 
+  ionViewWillEnter(){
+    this.workService.getAllWorks();
+  }
 }

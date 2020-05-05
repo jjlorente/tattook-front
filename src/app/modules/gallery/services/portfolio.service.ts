@@ -3,6 +3,7 @@ import { HttpClient, HttpRequest, HttpEventType, HttpEvent } from '@angular/comm
 import { BehaviorSubject, Observable, pipe, throwError, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { tap, map, catchError, last, finalize } from 'rxjs/operators';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({providedIn: 'root'})
 export class PortfolioService {
@@ -12,7 +13,7 @@ export class PortfolioService {
   private portfoliosStore: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly $portfolios: Observable<any> = this.portfoliosStore.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,public sanitizer: DomSanitizer) { }
 
   clearStore(){
     this.portfoliosStore.next(null)
