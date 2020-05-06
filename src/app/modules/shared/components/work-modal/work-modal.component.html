@@ -16,15 +16,21 @@
   <div class="big-img-container">
     <img class="big-img" src="{{thumb.picture}}"/>
   </div>
-  <div class="container" *ngIf="user" >
-    <ion-icon *ngIf="liked" color="app-secondary" class="icnLike" name="heart" (click)="deleteLikePicture()"></ion-icon>
-    <ion-icon *ngIf="!liked" color="app-secondary" class="icnLike" name="heart-outline" (click)="likePicture()"></ion-icon>
-    <ion-icon class="icnChat" color="app-secondary" name="chatbubbles-outline"></ion-icon><br>
-    <div class="likes">
-        <ion-label><b>{{likes}} Me gusta</b></ion-label>
+  <ion-card class="ion-color-app-tercero ion-padding">
+    <div class="container" *ngIf="user" >
+      <ion-icon *ngIf="liked" color="app-secondary" class="icnLike" name="heart" (click)="deleteLikePicture()"></ion-icon>
+      <ion-icon *ngIf="!liked" color="app-secondary" class="icnLike" name="heart-outline" (click)="likePicture()"></ion-icon>
+      <ion-icon class="icnChat" color="app-secondary" name="chatbubbles-outline"></ion-icon><br>
+      <div class="likes">
+          <ion-label><b>{{likes}} Me gusta</b></ion-label>
+      </div>
+      <div class="nameUser">
+        <ion-thumbnail slot="start">
+          <img src="{{user.picture}}"/>
+        </ion-thumbnail>
+        <ion-label>{{user.name}}</ion-label>
+      </div>
     </div>
-    <div class="nameUser">
-      <ion-label>{{user.name}}</ion-label>
-    </div>
-  </div>
+  </ion-card>
+  
 </ion-content>

@@ -1,16 +1,8 @@
-.big-img{
-  // margin-top: 3vh !important;
-  // margin-bottom: 3vh !important;
-}
 .big-img-container{
   max-height: 90% !important;
   background-color: black;
   display: flex;
   justify-content: center;
-}
-.container{
-  margin-left: 5px;
-  margin-top: 5px;
 }
 .icnLike{
   width: 30px; height: 30px; margin-left: -2px;
@@ -23,4 +15,12 @@
 }
 .nameUser{
   margin-top: 5px;
+  display: flex;
+  ion-label{
+    margin-left:15px;
+    margin-top: 15px;
+  }
+  ion-thumbnail{
+    --border-radius:25px;
+  }
 }
