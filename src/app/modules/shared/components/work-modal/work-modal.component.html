@@ -16,4 +16,14 @@
   <div class="big-img-container">
     <img class="big-img" src="{{thumb.picture}}"/>
   </div>
+  <div class="container" *ngIf="user" >
+    <ion-icon class="icnLike" name="heart-outline" (click)="likePicture()"></ion-icon>
+    <ion-icon class="icnChat" name="chatbubbles-outline"></ion-icon><br>
+    <div class="likes">
+        <ion-label><b>{{likes}} Me gusta</b></ion-label>
+    </div>
+    <div class="nameUser">
+      <ion-label>{{user.name}}</ion-label>
+    </div>
+  </div>
 </ion-content>

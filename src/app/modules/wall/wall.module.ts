@@ -25,4 +25,4 @@ import { WorkModalModule } from '../shared/components/work-modal/work-modal.modu
     declarations: [WallComponent],
     providers: [],
 })
-export class WallModule { }
+export class WallModule {}

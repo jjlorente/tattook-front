@@ -1,3 +1,4 @@
+import { FavoriteService } from './../../services/favorite.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, AlertController, PopoverController } from '@ionic/angular';
 import { ImagePopoverComponent } from '../image-popover/image-popover.component';
@@ -13,19 +14,34 @@ import { PortfolioService } from 'src/app/modules/gallery/services/portfolio.ser
 export class WorkModalComponent implements OnInit {
   @Input() thumb;
   @Input() portfolioId;
+  @Input() user;
+  @Input() work;
+  @Input() likes;
+  @Input() liked;
   constructor(
     private workService: WorkService,
     private portfolioService: PortfolioService,
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
-    private popoverController: PopoverController) { }
+    private popoverController: PopoverController,
+    private favoriteService: FavoriteService) { }
 
   ngOnInit() { 
     console.log(this.thumb);
+    console.log(this.user);
+    console.log(this.work);
   }
 
-  async close(event: string = null){
+  ionViewWillEnter(){
+    
+  }
+
+  async close(event: string = null) {
     await this.modalCtrl.dismiss(event);
+  }
+
+  async likePicture() {
+    this.favoriteService.addLike('picture', this.work._id).subscribe();
   }
 
   async presentPopover(ev: any) {
