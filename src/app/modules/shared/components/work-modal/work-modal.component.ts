@@ -41,7 +41,15 @@ export class WorkModalComponent implements OnInit {
   }
 
   async likePicture() {
-    this.favoriteService.addLike('picture', this.work._id).subscribe();
+    document.getElementsByClassName('icnLike')[0].setAttribute('name', 'heart');
+    this.favoriteService.addLike('picture', this.work._id)
+      .subscribe(res=>{
+        this.likes++;
+      });
+  }
+
+  async deleteLikePicture(){
+    
   }
 
   async presentPopover(ev: any) {
