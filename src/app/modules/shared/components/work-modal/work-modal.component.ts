@@ -33,7 +33,7 @@ export class WorkModalComponent implements OnInit {
   }
 
   ionViewWillEnter(){
-    
+
   }
 
   async close(event: string = null) {
@@ -41,7 +41,7 @@ export class WorkModalComponent implements OnInit {
   }
 
   async likePicture() {
-    document.getElementsByClassName('icnLike')[0].setAttribute('name', 'heart');
+    this.liked = true;
     this.favoriteService.addLike('picture', this.work._id)
       .subscribe(res=>{
         this.likes++;
@@ -49,7 +49,11 @@ export class WorkModalComponent implements OnInit {
   }
 
   async deleteLikePicture(){
-    
+    this.liked = false;
+    this.favoriteService.deleteLike('picture', this.work._id)
+      .subscribe(res=>{
+        this.likes--;
+      });
   }
 
   async presentPopover(ev: any) {

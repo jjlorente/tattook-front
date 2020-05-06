@@ -10,8 +10,10 @@ export class FavoriteService {
     constructor(private http: HttpClient) { };
 
     addLike(type, itemID) {
-        console.log(type);
-        console.log(itemID);
         return this.http.post(environment.apiUrl + '/favorite', {type, itemID});
+    }
+
+    deleteLike(type, itemID) {
+        return this.http.delete(environment.apiUrl + '/favorite?type='+type+'&itemID='+itemID);
     }
 }
