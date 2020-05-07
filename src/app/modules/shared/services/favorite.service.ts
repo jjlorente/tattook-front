@@ -6,14 +6,23 @@ import { tap, map, catchError, last, finalize } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class FavoriteService {
+    private tattoosStore: BehaviorSubject<any> = new BehaviorSubject(null);
+    readonly $tattoos: Observable<any> = this.tattoosStore.asObservable();
 
-    constructor(private http: HttpClient) { };
+    constructor(private http: HttpClient) { }
 
     addLike(type, itemID) {
         return this.http.post(environment.apiUrl + '/favorite', {type, itemID});
     }
 
     deleteLike(type, itemID) {
-        return this.http.delete(environment.apiUrl + '/favorite?type='+type+'&itemID='+itemID);
+        return this.http.delete(environment.apiUrl + '/favorite?type=' + type + '&itemID=' + itemID);
+    }
+
+    getAllTattoos(type) {
+        this.http.get(environment.apiUrl + '/favorite?type=' + type)
+        .subscribe((res) => {
+            this.tattoosStore.next(res);
+        });
     }
 }

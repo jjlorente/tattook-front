@@ -1,8 +1,16 @@
 #container {
-    padding: 20px;
-    height: 90vh;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
+  padding: 20px;
+  height: 90vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.collection-item{
+  padding: 2px;
+  border-radius: 13px;
+  img {
+    border-radius: 10px;
   }
+}

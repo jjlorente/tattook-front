@@ -26,15 +26,9 @@ export class WorkModalComponent implements OnInit {
     private popoverController: PopoverController,
     private favoriteService: FavoriteService) { }
 
-  ngOnInit() { 
-    console.log(this.thumb);
-    console.log(this.user);
-    console.log(this.work);
-  }
+  ngOnInit() { }
 
-  ionViewWillEnter(){
-
-  }
+  ionViewWillEnter() { }
 
   async close(event: string = null) {
     await this.modalCtrl.dismiss(event);

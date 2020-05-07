@@ -1,3 +1,25 @@
-<div id="container">
-  FAVORITES
-</div>
+<ion-header>
+  <ion-toolbar color="app-primary">
+    <ion-title>Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-toolbar>
+    <ion-segment value="tattoos" color="app-secondary" (ionChange)="onChange($event)">
+      <ion-segment-button value="tattoos">
+        <ion-label color="app-primary">Tattoos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="usuarios">
+        <ion-label color="app-primary">Usuarios</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <div *ngIf="status=='tattoos'"  style="column-count: 2; column-gap: 2px;">
+    <div class="collection-item" *ngFor="let item of tattoos">
+      <img (click)="openBoard(item.work,item.user,item.thumb,item.likes,item.liked)" [src]="item.thumb.picture"/>
+    </div>
+  </div>
+  <ion-card *ngIf="status=='usuarios'">
+      <ion-label>Usuarios</ion-label>
+  </ion-card>
+</ion-content>
