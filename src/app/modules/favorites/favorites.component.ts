@@ -2,6 +2,7 @@ import { FavoriteService } from './../shared/services/favorite.service';
 import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { WorkModalComponent } from '../shared/components/work-modal/work-modal.component';
+import { OtherProfileComponent } from '../shared/components/other-profile/other-profile.component';
 
 @Component({
   selector: 'app-favorites',
@@ -49,6 +50,21 @@ export class FavoritesComponent implements OnInit {
     modal.onWillDismiss()
       .then(res => {
         this.favoriteService.getAllTattoos('picture');
-      });
+        if(res.data === 'other-profile'){
+          this.openOtherProfile(user);
+        }
+    })
+  }
+
+  async openOtherProfile(user){
+    const modal = await this.modalCtrl.create({
+      component: OtherProfileComponent,
+      swipeToClose: true,
+      componentProps: {
+        'user': user 
+      },
+      cssClass: 'modal'
+    });
+    await modal.present();
   }
 }

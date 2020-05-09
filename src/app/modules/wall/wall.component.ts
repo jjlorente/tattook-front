@@ -2,7 +2,10 @@ import { WorkService } from './../shared/components/work-modal/work.service';
 import { PortfolioService } from 'src/app/modules/gallery/services/portfolio.service';
 import { Component, OnInit } from '@angular/core';
 import { WorkModalComponent } from '../shared/components/work-modal/work-modal.component';
-import { ModalController } from '@ionic/angular';
+import { ModalController, IonRouterOutlet } from '@ionic/angular';
+import { OtherProfileComponent } from '../shared/components/other-profile/other-profile.component';
+import { CustomerService } from 'src/app/core/services/customer.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +17,9 @@ export class WallComponent implements OnInit {
   works:any;
   constructor(
     public workService: WorkService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    public router: Router,
+    private customerService: CustomerService
   ) {}
 
   ngOnInit() {
@@ -26,7 +31,7 @@ export class WallComponent implements OnInit {
     this.workService.getAllWorks();
   }
 
-  async openBoard(work, user, thumb, likes, liked){
+  async openWork(work, user, thumb, likes, liked){
     const modal = await this.modalCtrl.create({
       component: WorkModalComponent,
       swipeToClose: true,
@@ -41,9 +46,31 @@ export class WallComponent implements OnInit {
       },
     });
     await modal.present();
-    modal.onWillDismiss()
+    modal.onDidDismiss()
       .then(res=>{
-        this.workService.getAllWorks();
+        if(res.data === 'other-profile'){
+          this.openOtherProfile(user);
+        } else {
+          this.workService.getAllWorks();
+        }
       })
+  }
+
+  async openOtherProfile(user){
+    let me = this.customerService.getCurrentValueCustomer()
+    if(me._id === user._id) {
+      this.router.navigate(['/tabs/profile'])
+    } else {
+      const modal = await this.modalCtrl.create({
+        component: OtherProfileComponent,
+        swipeToClose: true,
+        componentProps: {
+          'user': user 
+        },
+        cssClass: 'modal'
+      });
+      await modal.present();
+    }
+    
   }
 }

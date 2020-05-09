@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MenuController, ModalController, IonRouterOutlet } from '@ionic/angular';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
 import { CustomerService } from 'src/app/core/services/customer.service';
-import { EditProfileModalComponent } from './components/edit-profile-modal/edit-profile-modal.component';
 import { PortfolioService } from '../gallery/services/portfolio.service';
+import { EditProfileModalComponent } from './components/edit-profile-modal/edit-profile-modal.component';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
+
+  @Input() userId = null;
 
   slidesOpts = {
     slidesPerView:1.25,
@@ -33,14 +36,21 @@ export class ProfileComponent implements OnInit {
       .subscribe(user=> {
         this.user = user;
       })
+    this.customerService.$otherCustomer
+      .subscribe(user=> {
+        this.user = user;
+      })
+    
   }
 
   ionViewWillEnter(){
-    this.customerService.getCustomer();
+    this.customerService.getCustomer(this.userId).subscribe();
     if(!this.portfolioService.getPortfolioCurrentValue()){
       this.portfolioService.getPortfolios()
     }
   }
+
+  ngOnDestroy() { }
 
   async onClickMenu(){
     this.menuCtrl.toggle('profileMenu');

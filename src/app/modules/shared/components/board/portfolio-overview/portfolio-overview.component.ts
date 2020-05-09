@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BoardModalComponent } from '../board-modal/board-modal.component';
-import { IonRouterOutlet } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
+import { ModalController, IonRouterOutlet } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { PortfolioService } from 'src/app/modules/gallery/services/portfolio.service';
 
@@ -15,9 +14,10 @@ export class PortfolioOverviewComponent implements OnInit {
   @Input('portfolioName') portfolioName:any;
   @Input('portfolioId') portfolioId:any;
   @Input('works') works:any = [];
+  @Input('user') user: any = {}
 
   constructor(
-    private routerOutlet: IonRouterOutlet,
+    // private routerOutlet: IonRouterOutlet,
     private modalCtrl: ModalController,
     private portfolioService: PortfolioService) { }
 
@@ -27,11 +27,12 @@ export class PortfolioOverviewComponent implements OnInit {
     const modal = await this.modalCtrl.create({
       component: BoardModalComponent,
       swipeToClose: true,
-      presentingElement: this.routerOutlet.nativeEl,
+      // presentingElement: this.routerOutlet.nativeEl,
       componentProps: {
         'portfolioName': this.portfolioName,
         'portfolioId': this.portfolioId,
-        'works': this.works
+        'works': this.works,
+        'user': this.user,
       },
       cssClass: 'modal'
     });

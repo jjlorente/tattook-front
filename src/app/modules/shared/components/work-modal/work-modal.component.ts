@@ -1,9 +1,10 @@
 import { FavoriteService } from './../../services/favorite.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController, AlertController, PopoverController } from '@ionic/angular';
+import { ModalController, AlertController, PopoverController, IonRouterOutlet } from '@ionic/angular';
 import { ImagePopoverComponent } from '../image-popover/image-popover.component';
 import { WorkService } from './work.service';
 import { PortfolioService } from 'src/app/modules/gallery/services/portfolio.service';
+import { CustomerService } from 'src/app/core/services/customer.service';
 
 @Component({
   selector: 'app-work-modal',
@@ -18,17 +19,24 @@ export class WorkModalComponent implements OnInit {
   @Input() work;
   @Input() likes;
   @Input() liked;
+  
+  public me: any = {};
+
   constructor(
     private workService: WorkService,
     private portfolioService: PortfolioService,
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private popoverController: PopoverController,
-    private favoriteService: FavoriteService) { }
+    private favoriteService: FavoriteService,
+    private customerService: CustomerService
+    ) { }
 
   ngOnInit() { }
 
-  ionViewWillEnter() { }
+  ionViewWillEnter() {
+    this.me = this.customerService.getCurrentValueCustomer()
+  }
 
   async close(event: string = null) {
     await this.modalCtrl.dismiss(event);
@@ -70,5 +78,9 @@ export class WorkModalComponent implements OnInit {
     .subscribe((res)=>{
       this.close('delete');
     })
+  }
+
+  async openOtherProfile(){
+    this.close('other-profile')
   }
 }

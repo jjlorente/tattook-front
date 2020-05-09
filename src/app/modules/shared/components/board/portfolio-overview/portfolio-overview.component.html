@@ -4,8 +4,8 @@
   </ion-card-header>
   <ion-card-content>
     <ion-row>
-      <ion-col size="3" *ngFor="let image of works">
-        <img class="collection-item" [src]="image.picture"/>
+      <ion-col size="3" *ngFor="let item of works">
+        <img class="collection-item" [src]="item.thumb.picture"/>
       </ion-col>
     </ion-row>
   </ion-card-content>

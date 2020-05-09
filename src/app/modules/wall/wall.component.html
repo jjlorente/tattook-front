@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="app-primary">
-    <ion-title>Muro</ion-title>
+    <ion-title class="title app-name">Tattook</ion-title>
     <ion-buttons slot="end">
       <ion-button style="width: 55px;" color="app-secondary">
         <ion-icon slot="icon-only" size="large" name="chatbubbles"></ion-icon>
@@ -11,7 +11,7 @@
 <ion-content>
   <div style="column-count: 2; column-gap: 2px;" >
     <div class="collection-item" *ngFor="let item of works">
-      <img (click)="openBoard(item.work,item.user,item.thumb,item.likes,item.liked)" [src]="item.thumb.picture"/>
+      <img (click)="openWork(item.work,item.user,item.thumb,item.likes,item.liked)" [src]="item.thumb.picture"/>
     </div>
   </div>
 </ion-content>

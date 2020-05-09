@@ -3,6 +3,7 @@ import { PortfolioService } from './services/portfolio.service';
 import { AlertController, IonRouterOutlet, ModalController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { NewImageModalComponent } from './components/new-image-modal/new-image-modal.component';
+import { CustomerService } from 'src/app/core/services/customer.service';
 
 @Component({
   selector: 'app-gallery',
@@ -11,21 +12,25 @@ import { NewImageModalComponent } from './components/new-image-modal/new-image-m
 })
 export class GalleryComponent implements OnInit {
 
+  user = {}
+
   constructor(
     public portfolioService: PortfolioService,
     private alertCtrl: AlertController,
     private camera: Camera,
     private routerOutlet: IonRouterOutlet,
-    private modalCtrl: ModalController) { }
+    private modalCtrl: ModalController,
+    private customerService: CustomerService) { }
 
   ngOnInit() {
     this.portfolioService.getPortfolios()
-  }
-  
-  ionViewWillEnter(){
     this.portfolioService.$percentDone.subscribe((percent)=>{
       console.log(percent,'%')
     })
+    this.customerService.$customer.subscribe(user=>this.user = user)
+  }
+  
+  ionViewWillEnter() {
     if(!this.portfolioService.getPortfolioCurrentValue()){
       this.portfolioService.getPortfolios()
     }

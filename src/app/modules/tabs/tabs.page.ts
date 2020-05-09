@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { CustomerService } from 'src/app/core/services/customer.service';
 
 @Component({
   selector: 'app-tabs',
@@ -8,11 +8,11 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 })
 export class TabsPage {
 
-  constructor(private googlePlus: GooglePlus) {}
+  constructor(private customerService: CustomerService) {}
 
-  login(){
-    this.googlePlus.login({})
-      .then(res => console.log(res))
-      .catch(err => console.error(err));
+  ionViewWillEnter() {
+    if(!this.customerService.getCurrentValueCustomer()) {
+      this.customerService.getCustomer().subscribe()
+    }
   }
 }

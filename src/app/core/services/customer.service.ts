@@ -4,12 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class CustomerService {
     private customerStore: BehaviorSubject<any> = new BehaviorSubject(null);
     readonly $customer: Observable<any> = this.customerStore.asObservable();
+
+    private otherCustomerStore: BehaviorSubject<any> = new BehaviorSubject(null);
+    readonly $otherCustomer: Observable<any> = this.otherCustomerStore.asObservable();
 
     constructor(
         private http: HttpClient,
@@ -21,24 +24,37 @@ export class CustomerService {
       this.customerStore.next(null)
     }
 
-    getCustomer(){
-        this.http.get(environment.apiUrl+'/user')
-            .pipe(
-                map((res: any) => {
-                    if(res[0].picture && res[0].picture.length){
-                        res[0].picture = this.sanitizer.bypassSecurityTrustUrl(res[0].picture)
-                    }
-                    return res[0]
-                })
-            ).subscribe((res)=>{
-                this.customerStore.next(res);
-            })
+    getCurrentValueCustomer(){
+      return this.customerStore.getValue()
+    }
+
+    getCustomer(userId = null) {
+      let path = '';
+      if(userId){
+        path = '/'+ userId;
+      }
+      return this.http.get(environment.apiUrl+'/user' + path)
+          .pipe(
+              map((res: any) => {
+                  if(res[0].picture && res[0].picture.length){
+                      res[0].picture = this.sanitizer.bypassSecurityTrustUrl(res[0].picture)
+                  }
+                  return res[0]
+              }),
+              tap(res=>{
+                if(userId){
+                  this.otherCustomerStore.next(res)
+                } else {
+                  this.customerStore.next(res);
+                }
+              })
+          )
     }
 
     setCustomerProfile(user){
         this.http.put(environment.apiUrl+'/user',user)
             .subscribe((res)=>{
-                this.getCustomer()
+                this.getCustomer().subscribe()
             })
     }
 }

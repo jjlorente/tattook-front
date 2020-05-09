@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './core/auth/services/auth.service';
 import { Router } from '@angular/router';
+import { CustomerService } from './core/services/customer.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    private customerService: CustomerService
   ) {
     this.initializeApp();
   }
@@ -30,7 +32,10 @@ export class AppComponent {
         .subscribe(login => {
           if(login) {
             if(this.router.url.indexOf('/login') !== -1) {
-              this.router.navigate(['/tabs'])
+              this.customerService.getCustomer()
+                .subscribe((res)=>{
+                  this.router.navigate(['/tabs'])
+                })
             }
           } else {
             this.router.navigate(['/login'])

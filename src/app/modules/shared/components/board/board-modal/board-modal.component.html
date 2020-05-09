@@ -5,7 +5,7 @@
         <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end">
+    <ion-buttons *ngIf="me._id === user._id" slot="end">
       <ion-button (click)="presentPopover($event)">
         <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
       </ion-button>
@@ -22,8 +22,8 @@
     </ion-col>
   </ion-row> -->
   <div class="collection ion-padding" style="column-count: 2;">
-    <div class="collection-item" text-center *ngFor="let work of works" (click)="onClickWork(work)">
-      <img [src]="work.picture"/>
+    <div class="collection-item" text-center *ngFor="let item of works" (click)="onClickWork(item)">
+      <img [src]="item.thumb.picture"/>
     </div>
   </div>
 </ion-content>

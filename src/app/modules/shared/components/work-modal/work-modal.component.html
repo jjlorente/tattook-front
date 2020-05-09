@@ -5,7 +5,7 @@
         <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end">
+    <ion-buttons *ngIf="me._id === user._id" slot="end">
       <ion-button (click)="presentPopover($event)">
         <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
       </ion-button>
@@ -24,7 +24,7 @@
       <div class="likes">
           <ion-label><b>{{likes}} Me gusta</b></ion-label>
       </div>
-      <div class="nameUser">
+      <div class="nameUser" (click)="openOtherProfile()">
         <ion-thumbnail slot="start">
           <img src="{{user.picture}}"/>
         </ion-thumbnail>

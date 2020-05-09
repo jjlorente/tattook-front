@@ -3,6 +3,7 @@ import { ModalController, PopoverController, IonRouterOutlet } from '@ionic/angu
 import { PopoverCrudComponent } from 'src/app/modules/shared/components/popover-crud/popover-crud.component';
 import { PortfolioService } from 'src/app/modules/gallery/services/portfolio.service';
 import { WorkModalComponent } from '../../work-modal/work-modal.component';
+import { CustomerService } from 'src/app/core/services/customer.service';
 
 @Component({
   selector: 'board-modal',
@@ -14,15 +15,20 @@ export class BoardModalComponent implements OnInit {
   @Input('portfolioName') portfolioName:any;  
   @Input('portfolioId') portfolioId:any;
   @Input('works') works;
+  @Input('user') user;
+  
+  public me: any = {};
 
   refreshPortfoliosOnClose = false;
 
   constructor(
     private modalCtrl: ModalController,
     public popoverController: PopoverController,
-    public portfolioService: PortfolioService) { }
+    public portfolioService: PortfolioService,
+    private customerService: CustomerService) { }
 
   ngOnInit() { 
+    this.me = this.customerService.getCurrentValueCustomer()
     this.portfolioService.getWorks(this.portfolioId, 30)
       .subscribe((works)=>{
         this.works = works;
@@ -66,14 +72,18 @@ export class BoardModalComponent implements OnInit {
     })
   }
 
-  async onClickWork(work){
+  async onClickWork(item){
     const modal = await this.modalCtrl.create({
       component: WorkModalComponent,
       swipeToClose: true,
       cssClass: 'modal',
       componentProps: {
-        'thumb': work,
-        'portfolioId': this.portfolioId 
+        'thumb': item.thumb,
+        'portfolioId': this.portfolioId,
+        'user': item.user,
+        'work': item.work,
+        'likes': item.likes,
+        'liked': item.liked
       },
     });
     await modal.present();

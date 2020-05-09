@@ -23,8 +23,12 @@ export class PortfolioService {
     return this.portfoliosStore.getValue();
   }
 
-  getPortfolios(){
-    this.http.get(environment.apiUrl+'/portfolio')
+  getPortfolios(userId = null) {
+    let path = '';
+    if(userId){
+      path = '/user/'+ userId;
+    }
+    this.http.get(environment.apiUrl+'/portfolio' + path)
       .pipe(
         map(async (res:any)=>{
           const allWorks = res.map(async (portfolio)=>{return this.getWorks(portfolio._id, 4).toPromise()})
