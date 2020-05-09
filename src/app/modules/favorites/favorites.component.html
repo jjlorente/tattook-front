@@ -5,12 +5,12 @@
 </ion-header>
 <ion-content>
   <ion-toolbar>
-    <ion-segment value="tattoos" color="app-secondary" (ionChange)="onChange($event)">
+    <ion-segment value="{{status}}" color="app-secondary" (ionChange)="onChange($event)">
       <ion-segment-button value="tattoos">
-        <ion-label color="app-primary">Tattoos</ion-label>
+        <ion-label color="app-primary"><b>Tattoos</b></ion-label>
       </ion-segment-button>
       <ion-segment-button value="usuarios">
-        <ion-label color="app-primary">Usuarios</ion-label>
+        <ion-label color="app-primary"><b>Usuarios</b></ion-label>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -19,7 +19,16 @@
       <img (click)="openBoard(item.work,item.user,item.thumb,item.likes,item.liked)" [src]="item.thumb.picture"/>
     </div>
   </div>
-  <ion-card *ngIf="status=='usuarios'">
-      <ion-label>Usuarios</ion-label>
-  </ion-card>
+  <div *ngIf="status=='usuarios'">
+    <div *ngFor="let user of users">
+      <ion-card (click)="openOtherProfile(user)" >
+        <div class="nameUser">
+          <ion-thumbnail slot="start">
+            <img src="{{user.picture}}"/>
+          </ion-thumbnail>
+          <ion-label><b>{{user.name}}</b></ion-label>
+        </div>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>

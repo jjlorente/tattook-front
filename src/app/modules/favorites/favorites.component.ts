@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { CustomerService } from 'src/app/core/services/customer.service';
 import { FavoriteService } from './../shared/services/favorite.service';
 import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
@@ -12,21 +14,30 @@ import { OtherProfileComponent } from '../shared/components/other-profile/other-
 export class FavoritesComponent implements OnInit {
   status: any;
   tattoos: any;
-
+  users: any;
   constructor(
     private modalCtrl: ModalController,
-    public favoriteService: FavoriteService
+    public favoriteService: FavoriteService,
+    private customerService: CustomerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.favoriteService.$tattoos
       .subscribe(res => this.tattoos = res);
+
+    this.favoriteService.$users
+      .subscribe(res => this.users = res);
     this.status = 'tattoos';
+
+    console.log(this.users)
   }
 
   ionViewWillEnter(){
-    this.favoriteService.getAllTattoos('picture');
     this.status = 'tattoos';
+    this.favoriteService.getAllTattoos('picture');
+    this.favoriteService.getAllUsers('artist');
+    console.log(this.users)
   }
 
   async onChange(e){
@@ -51,7 +62,12 @@ export class FavoritesComponent implements OnInit {
       .then(res => {
         this.favoriteService.getAllTattoos('picture');
         if(res.data === 'other-profile'){
-          this.openOtherProfile(user);
+          let me = this.customerService.getCurrentValueCustomer()
+          if(me._id === user._id) {
+            this.router.navigate(['/tabs/profile'])
+          } else {
+            this.openOtherProfile(user);
+          }
         }
     })
   }
@@ -66,5 +82,9 @@ export class FavoritesComponent implements OnInit {
       cssClass: 'modal'
     });
     await modal.present();
+    modal.onWillDismiss()
+      .then(res => {
+        this.favoriteService.getAllUsers('artist');
+    })
   }
 }

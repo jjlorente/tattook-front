@@ -9,6 +9,9 @@ export class FavoriteService {
     private tattoosStore: BehaviorSubject<any> = new BehaviorSubject(null);
     readonly $tattoos: Observable<any> = this.tattoosStore.asObservable();
 
+    private usersStore: BehaviorSubject<any> = new BehaviorSubject(null);
+    readonly $users: Observable<any> = this.usersStore.asObservable();
+
     constructor(private http: HttpClient) { }
 
     addLike(type, itemID) {
@@ -23,6 +26,13 @@ export class FavoriteService {
         this.http.get(environment.apiUrl + '/favorite?type=' + type)
         .subscribe((res) => {
             this.tattoosStore.next(res);
+        });
+    }
+
+    getAllUsers(type) {
+        this.http.get(environment.apiUrl + '/favorite/users?type=' + type)
+        .subscribe((res) => {
+            this.usersStore.next(res);
         });
     }
 }
