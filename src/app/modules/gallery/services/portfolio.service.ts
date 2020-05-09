@@ -33,7 +33,12 @@ export class PortfolioService {
         map(async (res:any)=>{
           const allWorks = res.map(async (portfolio)=>{return this.getWorks(portfolio._id, 4).toPromise()})
           let works:any = await Promise.all(allWorks);
-          return res.map((port, index)=>{ return {...port, works: works[index]}})
+          return res.map((port, index)=>{ 
+            return {
+              ...port, 
+              works: works[index]
+            }
+          })
         })
       ).subscribe(async (portfoliosPromise)=>{
         let portfolios = await portfoliosPromise;

@@ -5,6 +5,7 @@ import { CustomerService } from 'src/app/core/services/customer.service';
 import { PortfolioService } from '../../../gallery/services/portfolio.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { FavoriteService } from '../../services/favorite.service';
 
 @Component({
   selector: 'app-other-profile',
@@ -29,7 +30,8 @@ export class OtherProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     private authService: AuthService,
     public customerService: CustomerService,
     private modalCtrl: ModalController,
-    public portfolioService: PortfolioService) { }
+    public portfolioService: PortfolioService,
+    private favoriteService: FavoriteService) { }
 
   ngOnInit() {
     this.portfolioService.clearStore()
@@ -37,6 +39,10 @@ export class OtherProfileComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(){
     this.portfolioService.getPortfolios(this.user._id)
+    this.customerService.getCustomer(this.user._id)
+      .subscribe((res)=>{
+        this.user = res
+      });
   }
 
   ngOnDestroy() { 
@@ -58,6 +64,20 @@ export class OtherProfileComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   async editPicture(){
     console.log("Edit Picture");
+  }
+
+  like() {
+    this.favoriteService.addLike('artist', this.user._id)
+      .subscribe(res=>{
+        this.user.followed = true;
+      });
+  }
+
+  deleteLike(){
+    this.favoriteService.deleteLike('artist', this.user._id)
+      .subscribe(res=>{
+        this.user.followed = false;
+      });
   }
 
 }

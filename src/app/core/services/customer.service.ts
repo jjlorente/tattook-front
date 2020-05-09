@@ -36,10 +36,10 @@ export class CustomerService {
       return this.http.get(environment.apiUrl+'/user' + path)
           .pipe(
               map((res: any) => {
-                  if(res[0].picture && res[0].picture.length){
-                      res[0].picture = this.sanitizer.bypassSecurityTrustUrl(res[0].picture)
+                  if(res.picture && res.picture.length){
+                      res.picture = this.sanitizer.bypassSecurityTrustUrl(res.picture)
                   }
-                  return res[0]
+                  return res
               }),
               tap(res=>{
                 if(userId){
