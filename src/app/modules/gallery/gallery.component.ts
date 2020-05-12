@@ -99,7 +99,7 @@ export class GalleryComponent implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true,
-      allowEdit: true
+      //allowEdit: true
     }
     
     this.camera.getPicture(options).then((imageData) => {
