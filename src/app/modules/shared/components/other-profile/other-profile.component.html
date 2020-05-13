@@ -13,11 +13,11 @@
       <img id="profileImg" [src]="user.picture"/>
     </div>
     <div class="divProfile scoreFollows">
-      <p class="follows"><b>4.3 <ion-icon name="star-half"></ion-icon></b></p>
-      <p>Valoración</p>
+      <p class="follows"><b>{{user.followedCount}}</b></p>
+      <p>Seguidos</p>
     </div>
     <div class="divProfile scoreFollows">
-      <p class="follows"><b>324</b></p>
+      <p class="follows"><b>{{user.follows}}</b></p>
       <p>Seguidores</p>
     </div>
   </div>

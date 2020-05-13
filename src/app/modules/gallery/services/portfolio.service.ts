@@ -65,8 +65,8 @@ export class PortfolioService {
       )
   }
 
-  addNewImage(image, dataType, idPortfolio) {
-    const req = new HttpRequest('POST', environment.apiUrl+'/portfolio/'+idPortfolio+'/image', {image, dataType}, {
+  addNewImage(image, dataType, description, idPortfolio) {
+    const req = new HttpRequest('POST', environment.apiUrl+'/portfolio/'+idPortfolio+'/image', {image, dataType, description}, {
       reportProgress: true
     });
     return this.http.request(req).pipe(

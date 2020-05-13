@@ -12,6 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class NewImageModalComponent implements OnInit {
   @Input('image') image:any;
   @Input('dataType') dataType:any;
+  description:any;
 
   constructor(
     private modalCtrl: ModalController,
@@ -23,7 +24,7 @@ export class NewImageModalComponent implements OnInit {
   ngOnInit() { }
 
   saveImage(board) {
-    this.portfolioService.addNewImage(this.image, this.dataType, board._id)
+    this.portfolioService.addNewImage(this.image, this.dataType, this.description, board._id)
       .subscribe(
         res => this.modalCtrl.dismiss(),
         async (err)=>{

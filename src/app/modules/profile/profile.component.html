@@ -12,12 +12,12 @@
     <div *ngIf="user && user.picture" style="margin-top: 20px;" class="divProfile imageContainer">
       <img id="profileImg" [src]="user.picture"/>
     </div>
-    <div class="divProfile scoreFollows">
-      <p class="follows"><b>4.3 <ion-icon name="star-half"></ion-icon></b></p>
-      <p>Valoración</p>
+    <div class="divProfile scoreFollows" *ngIf="user && user.followedCount">
+      <p class="follows"><b>{{user.followedCount}}</b></p>
+      <p>Seguidos</p>
     </div>
-    <div class="divProfile scoreFollows">
-      <p class="follows"><b>324</b></p>
+    <div class="divProfile scoreFollows" *ngIf="user && user.follows">
+      <p class="follows"><b>{{user.follows}}</b></p>
       <p>Seguidores</p>
     </div>
   </div>
