@@ -24,8 +24,15 @@
   <p style="margin-left:17px;" *ngIf="user && user.name"><b>{{user.name}}</b></p>
   <p class="description" *ngIf="user && user.full_address" style="font-size: 13px;">{{user.full_address}}</p>
   <p class="description" *ngIf="user && user.description">{{user.description}}</p>
-  <ion-button *ngIf="!user.followed" shape="round" expand="block" color="app-secondary" (click)="like()">Seguir</ion-button>
-  <ion-button *ngIf="user.followed" shape="round" fill="outline" expand="block" color="app-primary-dark" (click)="deleteLike()">Dejar de seguir</ion-button>
+  <ion-row>
+    <ion-col size="6">
+      <ion-button *ngIf="!user.followed" size="small" shape="round" expand="block" color="app-secondary" (click)="like()">Seguir</ion-button>
+      <ion-button *ngIf="user.followed" size="small" shape="round" fill="outline" expand="block" color="app-primary-dark" (click)="deleteLike()">Dejar de seguir</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button shape="round" size="small" expand="block" fill="outline" color="app-secondary" (click)="openChat()">Enviar mensaje</ion-button>
+    </ion-col>
+  </ion-row>
   <div class="board-list ion-margin-top">
     <h2 class="ion-padding-start">Carpetas</h2>
     <ion-slides [options]="slidesOpts">

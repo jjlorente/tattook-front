@@ -2,32 +2,30 @@ import { AuthInterceptor } from './core/auth/interceptor/auth.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
 import { Camera } from '@ionic-native/camera/ngx';
-
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { environment } from 'src/environments/environment';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GoogleLoginProvider, SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
-
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-let config = new AuthServiceConfig([
+const socketConfig: SocketIoConfig = { url: environment.sockerUrl, options: {} };
+
+let authConfig = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
     provider: new GoogleLoginProvider(environment.google_client_id_web)
   }
 ]);
 export function provideConfig() {
-  return config;
+  return authConfig;
 }
 
 @NgModule({
@@ -37,6 +35,7 @@ export function provideConfig() {
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(),
+    SocketIoModule.forRoot(socketConfig),
     AppRoutingModule, 
     SocialLoginModule
   ],

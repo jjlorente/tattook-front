@@ -4,8 +4,8 @@ import { AuthService } from 'src/app/core/auth/services/auth.service';
 import { CustomerService } from 'src/app/core/services/customer.service';
 import { PortfolioService } from '../../../gallery/services/portfolio.service';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { FavoriteService } from '../../services/favorite.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-other-profile',
@@ -31,7 +31,9 @@ export class OtherProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     public customerService: CustomerService,
     private modalCtrl: ModalController,
     public portfolioService: PortfolioService,
-    private favoriteService: FavoriteService) { }
+    private favoriteService: FavoriteService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.portfolioService.clearStore()
@@ -78,6 +80,11 @@ export class OtherProfileComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe(res=>{
         this.user.followed = false;
       });
+  }
+
+  async openChat(){
+    await this.modalCtrl.dismiss();
+    this.router.navigate(['/chats/private', this.user._id]);
   }
 
 }
