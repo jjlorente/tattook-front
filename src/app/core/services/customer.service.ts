@@ -57,4 +57,18 @@ export class CustomerService {
                 this.getCustomer().subscribe()
             })
     }
+
+    getCustomerList(){
+      return this.http.get(environment.apiUrl+'/user/list')
+      .pipe(
+        map((res: any) => {
+          return res.map(user=>{
+            if(user.picture && user.picture.length){
+              user.picture = this.sanitizer.bypassSecurityTrustUrl(user.picture)
+            }
+            return user
+          })
+        })
+      )
+    }
 }

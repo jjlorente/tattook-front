@@ -17,6 +17,6 @@
 </ion-content>
 <ion-footer>
   <form (ngSubmit)="onSubmit()" [formGroup]="chatForm">
-    <input formControlName="msg" placeholder="Escribe un mensaje..." style="margin:0px" class="item-input" type="text">
+    <input formControlName="msg" placeholder="Escribe un mensaje..." [(ngModel)]="inputValue" style="margin:0px" class="item-input" type="text">
   </form>
 </ion-footer>

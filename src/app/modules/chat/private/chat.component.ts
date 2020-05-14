@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   user = {}
   me = {};
   messages = [];
+  inputValue = ''
 
   chatForm = new FormGroup({
     msg: new FormControl('', Validators.required)
@@ -61,6 +62,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.messages.push({message: this.chatForm.value.msg, sender: this.customerService.getCurrentValueCustomer()._id})
     this.chatService.sendMessage(this.chatForm.value.msg, this.userId);
+    this.inputValue = '';
   }
 
 }

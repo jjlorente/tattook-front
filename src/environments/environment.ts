@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://tattook-back-dev.herokuapp.com/api/v1',
-  // apiUrl: 'http://192.168.1.39:3000/api/v1',
-  // sockerUrl: 'http://192.168.1.39:3200',
-  sockerUrl: 'https://tattook-back-dev.herokuapp.com',
+  // apiUrl: 'https://tattook-back-dev.herokuapp.com/api/v1',
+  apiUrl: 'http://192.168.1.40:3000/api/v1',
+  sockerUrl: 'http://192.168.1.40:3000',
+  // sockerUrl: 'https://tattook-back-dev.herokuapp.com',
   google_client_id_web: '712092709894-piidfm3f1chc77i18bu15npvqse9d6q5.apps.googleusercontent.com'
 };
 
