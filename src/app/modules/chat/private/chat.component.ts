@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ChatService } from '../services/chat.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, takeLast, takeUntil } from 'rxjs/operators';
@@ -13,6 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 
 export class ChatComponent implements OnInit, OnDestroy {
+  @ViewChild('content', {static: true}) private content: any;
   userId
   private ngUnsubscribe: Subject<any> = new Subject()
   user = {}
@@ -43,13 +44,15 @@ export class ChatComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.ngUnsubscribe)
       ).subscribe((data)=>{
-        this.messages.push(data);
+        this.messages.push(data); 
+        this.scrollToBottomOnInit();
       })
     this.chatService.getMessages(this.userId)
     .pipe(
       takeUntil(this.ngUnsubscribe)
     ).subscribe((data:any)=>{
-        this.messages = data;
+        this.messages = data;  
+        this.scrollToBottomOnInit();
       })
   }
 
@@ -61,6 +64,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.messages.push({message: this.chatForm.value.msg, sender: this.customerService.getCurrentValueCustomer()._id})
     this.chatService.sendMessage(this.chatForm.value.msg, this.userId);
+    this.scrollToBottomOnInit();
   }
 
+  scrollToBottomOnInit() {
+    this.content.scrollToBottom(300);
+  }
 }

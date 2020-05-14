@@ -6,12 +6,10 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <div class="chat-body">
-    <div class="message" *ngFor="let item of messages">
-      <div [ngClass]="{'me': item.sender == me._id, 'other': item.sender != me._id}">
-        {{item.message}}
-      </div>
+<ion-content class="content-stable" #content>
+  <div *ngFor="let item of messages" [ngClass]="{'other': item.sender == me._id}" class="messages">
+    <div class="message " [ngClass]="{'slide-right': hideTime, '': !hideTime}">
+      <span>{{ item.message }}</span>
     </div>
   </div>
 </ion-content>
