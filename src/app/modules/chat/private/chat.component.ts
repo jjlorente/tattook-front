@@ -16,9 +16,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   @ViewChild('content', {static: true}) private content: any;
   userId
   private ngUnsubscribe: Subject<any> = new Subject()
-  user = {}
+  user:any = {}
   me = {};
   messages = [];
+  inputValue = ''
 
   chatForm = new FormGroup({
     msg: new FormControl('', Validators.required)
@@ -65,6 +66,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.messages.push({message: this.chatForm.value.msg, sender: this.customerService.getCurrentValueCustomer()._id})
     this.chatService.sendMessage(this.chatForm.value.msg, this.userId);
     this.scrollToBottomOnInit();
+    this.inputValue = '';
   }
 
   scrollToBottomOnInit() {
