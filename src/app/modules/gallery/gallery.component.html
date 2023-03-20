@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="app-primary">
+    <ion-title>Portfolios</ion-title>
+    <ion-buttons slot="end">
+      <ion-button style="width: 55px;" (click)="onClickAddImage()">
+        <ion-icon class="icon-topbar" slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-button style="width: 55px;" color="app-secondary" (click)="presentNewPortfolioModal()">
+        <ion-icon slot="icon-only" size="large" name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div style="padding:5px 10px" *ngFor="let portfolio of portfolioService.$portfolios | async">
+    <app-portfolio-overview
+      [portfolioName]="portfolio.name" 
+      [portfolioId]="portfolio._id" 
+      [works]="portfolio.works"
+      [user]="user"></app-portfolio-overview>
+  </div>
+</ion-content>

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="app-primary">
+    <ion-title>{{user.name}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="content-stable" #content>
+  <div *ngFor="let item of messages" [ngClass]="{'other': item.sender == me._id}" class="messages">
+    <div class="message " [ngClass]="{'slide-right': hideTime, '': !hideTime}">
+      <span>{{ item.message }}</span>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <form (ngSubmit)="onSubmit()" [formGroup]="chatForm">
+    <input formControlName="msg" placeholder="Escribe un mensaje..." [(ngModel)]="inputValue" style="margin:0px" class="item-input" type="text">
+  </form>
+</ion-footer>

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="app-primary">
+    <ion-title class="title app-name">Tattook</ion-title>
+    <ion-buttons slot="end">
+      <ion-button style="width: 55px;" [routerLink]="['/map']" routerLinkActive="router-link-active">
+        <ion-icon slot="icon-only" size="large" name="map-outline"></ion-icon>
+      </ion-button>
+      <ion-button style="width: 55px;" color="app-secondary" [routerLink]="['/chats/list']" routerLinkActive="router-link-active">
+        <ion-icon slot="icon-only" size="large" name="chatbubbles"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div style="column-count: 2; column-gap: 2px;" >
+    <div class="collection-item" *ngFor="let item of works">
+      <img (click)="openWork(item.work,item.user,item.thumb,item.likes,item.liked)" [src]="item.thumb.picture"/>
+    </div>
+  </div>
+</ion-content>

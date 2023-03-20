@@ -1,0 +1,9 @@
+<ion-button class="btn-google" expand="block" (click)="loginWithGoogle()" [disabled]="loadingService.isLoading() || isDisabled">
+  <div class="btn-google-content">
+    <img class="logo-google" width="36px" src="/assets/images/google-icon.png"/>
+    <span *ngIf="!loadingService.isLoading(); else elseBlock" class="btn-google-text">Continuar con Google</span>
+    <ng-template #elseBlock>
+      <ion-spinner class="btn-google-text"></ion-spinner>
+    </ng-template>
+  </div>
+</ion-button>

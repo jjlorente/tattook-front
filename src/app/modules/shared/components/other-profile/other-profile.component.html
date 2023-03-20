@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="app-primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="containerProfile">
+    <div *ngIf="user && user.picture" style="margin-top: 20px;" class="divProfile imageContainer">
+      <img id="profileImg" [src]="user.picture"/>
+    </div>
+    <div class="divProfile scoreFollows">
+      <p class="follows"><b>{{user.followedCount}}</b></p>
+      <p>Seguidos</p>
+    </div>
+    <div class="divProfile scoreFollows">
+      <p class="follows"><b>{{user.follows}}</b></p>
+      <p>Seguidores</p>
+    </div>
+  </div>
+  <p style="margin-left:17px;" *ngIf="user && user.name"><b>{{user.name}}</b></p>
+  <p class="description" *ngIf="user && user.full_address" style="font-size: 13px;">{{user.full_address}}</p>
+  <p class="description" *ngIf="user && user.description">{{user.description}}</p>
+  <ion-row>
+    <ion-col size="6">
+      <ion-button *ngIf="!user.followed" size="small" shape="round" expand="block" color="app-secondary" (click)="like()">Seguir</ion-button>
+      <ion-button *ngIf="user.followed" size="small" shape="round" fill="outline" expand="block" color="app-primary-dark" (click)="deleteLike()">Dejar de seguir</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button shape="round" size="small" expand="block" fill="outline" color="app-secondary" (click)="openChat()">Enviar mensaje</ion-button>
+    </ion-col>
+  </ion-row>
+  <div class="board-list ion-margin-top">
+    <h2 class="ion-padding-start">Carpetas</h2>
+    <ion-slides [options]="slidesOpts">
+      <ion-slide *ngFor="let portfolio of portfolioService.$portfolios | async">
+        <app-portfolio-overview 
+          style="width: 100%;"
+          [portfolioName]="portfolio.name" 
+          [portfolioId]="portfolio._id" 
+          [works]="portfolio.works"></app-portfolio-overview>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
+

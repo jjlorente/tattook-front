@@ -1,0 +1,44 @@
+#container {
+    padding: 20px;
+    height: 90vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+  }
+
+.menuProfile{
+  --width: 225px;
+}
+.follows{
+  position: relative;
+  bottom: -10px;
+  text-align: center;
+}
+
+.scoreFollows{
+  margin-top: 20px;
+}
+.description{
+  width: 60%;
+  margin-left:17px;
+}
+#profileImg{
+  display: block;
+  border-radius:150px;
+  margin-left:17px;
+}
+.divProfile{
+  width: 33%;
+  text-align: center;
+  justify-content: space-between;
+}
+.containerProfile{
+  display: flex;
+  flex-direction: row;
+}
+.photos{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}

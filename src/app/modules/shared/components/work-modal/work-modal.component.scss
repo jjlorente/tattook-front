@@ -1,0 +1,30 @@
+.big-img-container{
+  max-height: 90% !important;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+}
+.icnLike{
+  width: 30px; height: 30px; margin-left: -2px;
+}
+.icnChat{
+  width: 30px; height: 30px; margin-left: 15px;
+}
+.likes{
+  margin-top: 7px;
+}
+.nameUser{
+  margin-top: 7px;
+  display: flex;
+  ion-label{
+    margin-left:15px;
+    margin-top: 15px;
+  }
+  ion-thumbnail{
+    --border-radius:25px;
+  }
+}
+
+.description{
+  margin-top: 7px;
+}

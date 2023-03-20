@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="app-primary">
+    <ion-title>Perfil</ion-title>
+    <ion-buttons slot="end" style="padding-right:15px">
+      <ion-icon (click)="onClickMenu()" name="menu-outline" size="large"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-router-outlet id="main"></ion-router-outlet> 
+  <div class="containerProfile">
+    <div *ngIf="user && user.picture" style="margin-top: 20px;" class="divProfile imageContainer">
+      <img id="profileImg" [src]="user.picture"/>
+    </div>
+    <div class="divProfile scoreFollows" *ngIf="user">
+      <p class="follows" *ngIf="user.followedCount"><b>{{user.followedCount}}</b></p>
+      <p class="follows" *ngIf="!user.followedCount"><b>0</b></p>
+      <p>Seguidos</p>
+    </div>
+    <div class="divProfile scoreFollows" *ngIf="user">
+      <p class="follows" *ngIf="user.follows"><b>{{user.follows}}</b></p>
+      <p class="follows" *ngIf="!user.follows"><b>0</b></p>
+      <p>Seguidores</p>
+    </div>
+  </div>
+  <p style="margin-left:17px;" *ngIf="user && user.name"><b>{{user.name}}</b></p>
+  <p class="description" *ngIf="user && user.full_address" style="font-size: 13px;">{{user.full_address}}</p>
+  <p class="description" *ngIf="user && user.description">{{user.description}}</p>
+  <ion-button expand="block" color="app-secondary" (click)="openEditProfile()" >Editar perfil</ion-button>
+  <div class="board-list ion-margin-top">
+    <h2 class="ion-padding-start">Carpetas</h2>
+    <ion-slides [options]="slidesOpts">
+      <ion-slide *ngFor="let portfolio of portfolioService.$portfolios | async">
+        <app-portfolio-overview 
+          style="width: 100%;"
+          [portfolioName]="portfolio.name" 
+          [portfolioId]="portfolio._id" 
+          [works]="portfolio.works"></app-portfolio-overview>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
+<ion-menu side="end" menuId="profileMenu" contentId="main" class="menuProfile">
+    <ion-header>
+      <ion-toolbar color="app-primary">
+        <ion-title>Ajustes</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+      <ion-menu-toggle auto-hide="true">
+          <ion-item (click)="logoutButton()"><ion-icon name="exit-outline" style="margin-right:15px"></ion-icon> Cerrar sesión</ion-item>
+      </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+

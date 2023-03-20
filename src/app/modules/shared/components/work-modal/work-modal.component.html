@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="app-primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="me._id === user._id" slot="end">
+      <ion-button (click)="presentPopover($event)">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="big-img-container">
+    <img class="big-img" src="{{thumb.picture}}"/>
+  </div>
+  <ion-card class="ion-color-app-tercero ion-padding">
+    <div class="container" *ngIf="user" >
+      <ion-icon *ngIf="liked" color="app-secondary" class="icnLike" name="heart" (click)="deleteLikePicture()"></ion-icon>
+      <ion-icon *ngIf="!liked" color="app-secondary" class="icnLike" name="heart-outline" (click)="likePicture()"></ion-icon>
+      <ion-icon class="icnChat" color="app-secondary" name="chatbubbles-outline"></ion-icon><br>
+      <div class="likes">
+          <ion-label><b>{{likes}} Me gusta</b></ion-label>
+      </div>
+      <div class="nameUser" (click)="openOtherProfile()">
+        <ion-thumbnail slot="start">
+          <img src="{{user.picture}}"/>
+        </ion-thumbnail>
+        <ion-label><b>{{user.name}}</b></ion-label>
+      </div>
+      <div style="margin-top:5px;">
+        <ion-label>{{work.description}}</ion-label>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>

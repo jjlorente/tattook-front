@@ -1,0 +1,30 @@
+$stable: #f8f8f8 !default;
+.scroll {
+  padding: 10px 0 50px !important;
+}
+.messages {
+  display: flex !important;
+  .message {
+    flex: 1 1 auto !important;
+    padding: 5px !important;
+  }
+}
+.messages.other {
+  .message {
+    text-align: right !important;
+  }
+  span {
+    color: black !important;
+    background-color: #C7C7CC !important;
+  }
+}
+span {
+  font-weight: 570;
+  background: #007AFF !important;
+  display: inline-block !important;
+  color: white !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  text-align: left !important;
+  max-width: 240px !important;
+}

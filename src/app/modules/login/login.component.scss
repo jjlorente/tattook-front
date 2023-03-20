@@ -1,0 +1,47 @@
+#container {
+  padding: 10px;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title{
+  height: 10vh;
+}
+.app-name{
+  font-family: 'Diplomata_SC';
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+ion-content ion-toolbar {
+  --background: translucent;
+}
+
+.btn-login-artist{
+  position: absolute;
+  width: 94vw;
+  bottom: 4vh;
+  height: 50px;
+  --border-width: 1px;
+}
+
+app-google-login-button{
+  width: 100%;
+}

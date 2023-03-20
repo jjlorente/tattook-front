@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="app-primary">
+    <ion-title>Chats</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngFor="let chat of chats">
+    <ion-card [routerLink]="['/chats/private', chat.user._id]"
+    routerLinkActive="router-link-active">
+      <div class="nameUser">
+        <ion-thumbnail slot="start">
+          <img src="{{chat.user.picture}}"/>
+        </ion-thumbnail>
+        <ion-label><b>{{chat.user.name}}</b></ion-label>
+      </div>
+    </ion-card>
+  </div>
+<ion-content>

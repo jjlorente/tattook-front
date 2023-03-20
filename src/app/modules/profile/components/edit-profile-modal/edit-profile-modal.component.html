@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="app-primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title size="large">
+      Editar perfil
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+    <ion-list inset="true" class="ion-no-margin ion-no-padding">
+      <label>Nombre</label> 
+      <input class="item-input" type="text" formControlName="username"/>
+      <label>Descripción</label> 
+      <textarea
+        rows="3"
+        class="textarea-description item-input" 
+        placeholder="Añade una descripción..." 
+        formControlName="description"></textarea>
+       <label>Dirección</label> 
+      <app-search-address-input
+        (onAddressSelected)="onAddressSelected($event)"
+        [addressInput]="address"
+        style="width: 100%;"></app-search-address-input>
+    </ion-list>
+    <ion-button shape="round" class="ion-margin ion-float-right" type="submit" color="app-secondary" [disabled]="!profileForm.valid">Aceptar</ion-button>
+  </form>
+</ion-content>

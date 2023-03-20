@@ -1,0 +1,29 @@
+#container {
+  padding: 20px;
+  height: 90vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.collection-item{
+  padding: 2px;
+  border-radius: 13px;
+  img {
+    border-radius: 10px;
+  }
+}
+
+.nameUser{
+  margin-top: 5px;
+  display: flex;
+  padding: 7px;
+  ion-label{
+    margin-left:15px;
+    margin-top: 15px;
+  }
+  ion-thumbnail{
+    --border-radius:25px;
+  }
+}
